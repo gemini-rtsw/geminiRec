@@ -1,4 +1,3 @@
 #RULES_TOP
-include $(CONFIG)/RULES_TOP
--include $(CONFIG)/RULES_TOP.Gem
+include $(EPICS_BASE)/configure/RULES_TOP
 
