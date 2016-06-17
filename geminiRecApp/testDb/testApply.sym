@@ -1,0 +1,11 @@
+[symbol2]
+bbox -256 -104 0 184
+uniq 27
+[tools]
+[attributes]
+[layers]
+<symbol>
+a 0 -128 40 -56 24 360
+l 100 0 0 -176 40 testApply
+r 0 -256 -104 0 176
+[comments]
