@@ -21,12 +21,12 @@
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
-ASTLIB = /gem_sw/prod/R3.14.12.4/support/astlib/1-6-1
-SLALIB = /gem_sw/prod/R3.14.12.4/support/slalib/1-9-3
-TCSLIB = /gem_sw/work/R3.14.12.4/support/tcslib
+ASTLIB = /gem_sw/prod/R3.14.12.4/support/astlib/1-6-2
+SLALIB = /gem_sw/prod/R3.14.12.4/support/slalib/1-9-5
+#TCSLIB = /gem_sw/work/R3.14.12.4/support/tcslib
 
 #If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ = /gem_sw/prod/R3.14.12.4/support/seq/2-2-5
-XYCOM = /gem_sw/work/R3.14.12.4/support/xycom
+SNCSEQ = /gem_sw/prod/R3.14.12.4/support/seq/2-2-3-1
+#XYCOM = /gem_sw/work/R3.14.12.4/support/xycom
 
 EPICS_BASE=/gem_sw/epics/R3.14.12.4/base
