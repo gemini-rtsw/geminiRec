@@ -1,0 +1,1074 @@
+
+file {
+	name="/home/mrippa/bin/tcsSeqCommand_medm.adl"
+	version=030107
+}
+display {
+	object {
+		x=353
+		y=100
+		width=918
+		height=430
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+text {
+	object {
+		x=118
+		y=18
+		width=687
+		height=30
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="Gemini Records TEST Sequence Commands"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=11
+		y=69
+		width=247
+		height=293
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=37
+		y=81
+		width=70
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="OBSERVE"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=270
+		y=69
+		width=260
+		height=137
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=346
+		y=77
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="GUIDE"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=270
+		y=225
+		width=260
+		height=137
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
+text {
+	object {
+		x=346
+		y=230
+		width=50
+		height=15
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="VERIFY"
+	align="horiz. centered"
+}
+"message button" {
+	object {
+		x=68
+		y=132
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)observe.DIR"
+		clr=14
+		bclr=8
+	}
+	label="observe"
+	press_msg="MARK"
+}
+"text update" {
+	object {
+		x=148
+		y=81
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)observeC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=68
+		y=169
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)endObserve.DIR"
+		clr=14
+		bclr=8
+	}
+	label="endObserve"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=68
+		y=207
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)pause.DIR"
+		clr=14
+		bclr=8
+	}
+	label="pause"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=68
+		y=246
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)continue.DIR"
+		clr=14
+		bclr=8
+	}
+	label="continue"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=68
+		y=283
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)stop.DIR"
+		clr=14
+		bclr=8
+	}
+	label="stop"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=68
+		y=322
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)abort.DIR"
+		clr=14
+		bclr=8
+	}
+	label="abort"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=276
+		y=122
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)guide.DIR"
+		clr=14
+		bclr=8
+	}
+	label="guide"
+	press_msg="MARK"
+}
+"text update" {
+	object {
+		x=430
+		y=128
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)guideC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=277
+		y=162
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)endGuide.DIR"
+		clr=14
+		bclr=8
+	}
+	label="endGuide"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=277
+		y=274
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)verify.DIR"
+		clr=14
+		bclr=8
+	}
+	label="verify"
+	press_msg="MARK"
+}
+"text update" {
+	object {
+		x=430
+		y=280
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)verifyC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=277
+		y=316
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)endVerify.DIR"
+		clr=14
+		bclr=8
+	}
+	label="endVerify"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=587
+		y=148
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)init.DIR"
+		clr=14
+		bclr=8
+	}
+	label="init"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=588
+		y=203
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)datum.DIR"
+		clr=14
+		bclr=8
+	}
+	label="datum"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=588
+		y=258
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)test.DIR"
+		clr=14
+		bclr=8
+	}
+	label="test"
+	press_msg="MARK"
+}
+"message button" {
+	object {
+		x=589
+		y=313
+		width=95
+		height=27
+	}
+	control {
+		chan="$(top)park.DIR"
+		clr=14
+		bclr=8
+	}
+	label="park"
+	press_msg="MARK"
+}
+"text update" {
+	object {
+		x=750
+		y=101
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)rebootC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=751
+		y=154
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)initC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=749
+		y=209
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)datumC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=748
+		y=264
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)testC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=748
+		y=319
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)parkC.VAL"
+		clr=15
+		bclr=9
+	}
+	clrmod="discrete"
+	align="horiz. centered"
+	limits {
+	}
+}
+"message button" {
+	object {
+		x=436
+		y=383
+		width=86
+		height=33
+	}
+	control {
+		chan="$(top)apply.DIR"
+		clr=14
+		bclr=8
+	}
+	label="APPLY"
+	press_msg="START"
+}
+"message button" {
+	object {
+		x=318
+		y=383
+		width=86
+		height=33
+	}
+	control {
+		chan="$(top)apply.DIR"
+		clr=14
+		bclr=8
+	}
+	label="CLEAR"
+	release_msg="CLEAR"
+}
+"text update" {
+	object {
+		x=430
+		y=168
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)endGuideC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=430
+		y=322
+		width=88
+		height=15
+	}
+	monitor {
+		chan="$(top)endVerifyC.VAL"
+		clr=15
+		bclr=9
+	}
+	align="horiz. centered"
+	limits {
+	}
+}
+"related display" {
+	object {
+		x=586
+		y=94
+		width=95
+		height=27
+	}
+	display[0] {
+		label="REBOOT"
+		name="tcsReboot.adl"
+		args="top=$(top)"
+	}
+	clr=14
+	bclr=8
+	label="Reboot"
+}
+rectangle {
+	object {
+		x=199
+		y=135
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)observe.MARK"
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=172
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)endObserve.MARK"
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=210
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)pause.MARK"
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=249
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)continue.MARK"
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=286
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)stop.MARK"
+	}
+}
+rectangle {
+	object {
+		x=199
+		y=325
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)abort.MARK"
+	}
+}
+rectangle {
+	object {
+		x=396
+		y=125
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)guide.MARK"
+	}
+}
+rectangle {
+	object {
+		x=396
+		y=165
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)endGuide.MARK"
+	}
+}
+rectangle {
+	object {
+		x=395
+		y=277
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)verify.MARK"
+	}
+}
+rectangle {
+	object {
+		x=395
+		y=319
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=17
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)endVerify.MARK"
+	}
+}
+rectangle {
+	object {
+		x=705
+		y=98
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)reboot.MARK"
+	}
+}
+rectangle {
+	object {
+		x=705
+		y=151
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)init.MARK"
+	}
+}
+rectangle {
+	object {
+		x=705
+		y=206
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)datum.MARK"
+	}
+}
+rectangle {
+	object {
+		x=705
+		y=261
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)test.MARK"
+	}
+}
+rectangle {
+	object {
+		x=705
+		y=316
+		width=20
+		height=20
+	}
+	"basic attribute" {
+		clr=16
+	}
+	"dynamic attribute" {
+		vis="if not zero"
+		chan="$(top)park.MARK"
+	}
+}
+text {
+	object {
+		x=389
+		y=105
+		width=35
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="MARKED"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=393
+		y=255
+		width=35
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="MARKED"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=699
+		y=66
+		width=35
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="MARKED"
+	align="horiz. centered"
+}
+text {
+	object {
+		x=194
+		y=111
+		width=35
+		height=12
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+	textix="MARKED"
+	align="horiz. centered"
+}
+rectangle {
+	object {
+		x=197
+		y=133
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=197
+		y=170
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=197
+		y=208
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=197
+		y=247
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=197
+		y=284
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=197
+		y=323
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=394
+		y=123
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=394
+		y=163
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=393
+		y=275
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=393
+		y=317
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=703
+		y=96
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=703
+		y=149
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=703
+		y=204
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=703
+		y=259
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
+rectangle {
+	object {
+		x=703
+		y=314
+		width=24
+		height=24
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+		width=2
+	}
+}
