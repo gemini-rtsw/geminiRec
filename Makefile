@@ -4,7 +4,6 @@ TOP = .
 include $(TOP)/configure/CONFIG
 DIRS += configure
 DIRS += geminiRecApp
-DIRS += testHarnessApp
 include $(TOP)/configure/RULES_TOP
 
 
