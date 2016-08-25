@@ -93,7 +93,10 @@ struct lutoutdset
     DEVSUPFUN	init_record;
     DEVSUPFUN	get_ioint_info;
     DEVSUPFUN	write_lutout;
-};
+} lutoutdset;
+
+
+
 
 static void	checkAlarms ( lutoutRecord * );
 static void	monitor ( lutoutRecord * );
@@ -491,6 +494,7 @@ static long read_file( lutoutRecord *plutout )
     }
 
     sprintf (buf, "%s/%s", plutout->fdir, plutout->fnam);
+printf("%s\n", buf);
     if ((fp = fopen (buf, "r")) == NULL)
     {
 	recGblRecordError (S_db_badField, (void *) plutout, "lutoutRecord: read_file FDIR | FNAM");
@@ -519,10 +523,14 @@ static long read_file( lutoutRecord *plutout )
 		p = (LUT *) malloc (sizeof (LUT));
 		ellAdd ((ELLLIST *) plutout->ltbl, (ELLNODE *) p);
 		strncpy (p->tag, tag, LUT_TAG_SZ);
+printf("tag = %s;  ", tag);
 		if (fscanf (fp, "%ld", &p->nval) != 1)
 		    status = -1;
 		else if( p->nval )
+{
 		    count++;
+printf("nval = %ld\n", p->nval);
+}
 	    }
 	}
 	/* add values in existing entry */
