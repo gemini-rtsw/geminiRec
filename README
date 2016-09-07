@@ -17,16 +17,18 @@ The geminiRec module provides soft device support for following input/output rec
 -  lutout
 -  status
 
-The capfast directory contains: 
+The geminiRec/geminRecApp/Db  directory contains: 
                  The capfast symbols for the various Gemini records.
-                 The "edb.def" additional entries.
-                 The "tdct.cfg" additional entries.
+                 The file "gemrec-edb.def" containing additional entries to
+                      be added to the system edb.def file.
+                 The file "gemrec-tdct.cfg" contianing additional entries to
+                      be added to the system tdct.cfg file.
 
                  If the following hasn't already been done at your site:
                  (1) Copy the symbols capfast/*.sym to the relevant location.
                      - capfast: Probably $EPICS/extensions/src/edif/lib/sym
                      - tdct: Probably $(TDCT_INSTALL_LOCATION)/library/epics
-                 (2) Add the lines in capfast/gem-edb-def to your edb.def file.
+                 (2) Add the lines in capfast/gemrec-edb.def to your edb.def file.
                      - capfast: Probably at $EPICS/extensions/src/edif/lib/edb.def
                      - tdct: Probably at $(TDCT_INSTALL_LOCATION)/edb.def
                  (3) If using TDCT, insert the lines in capfast/gem-tdct-cfg 

@@ -5,6 +5,8 @@ include $(TOP)/configure/CONFIG
 
 #----------------------------------------------------
 vpath %.sym ..
+vpath %-edb.def ..
+vpath %-tdct.cfg ..
 vpath %.db $(SYS_DB_PATHS)
 
 # Install database files created from .sch files
@@ -15,6 +17,8 @@ TDCT_CFG = ../tdct.cfg
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 DB += $(wildcard ../*.sym)
+DB += $(wildcard ../*-edb.def)
+DB += $(wildcard ../*-tdct.cfg)
 DEPSCHS = $(wildcard ../*.sch)
 
 include $(TOP)/configure/RULES
