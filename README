@@ -7,12 +7,15 @@ The geminiRec module provides the following records:
 -  car         Command Action Response Record
 -  cmdTimeout  Command Time Out Record
 -  genSub      General Subroutine Record
--  load        PMAC Load Record
 -  lutin       Lookup Table Input Record
 -  lutout      Lookup Table Output Record
 -  sir         Status Information Record  
 -  status      Status Record
 
+The geminiRec module provides soft device support for following input/output records:
+-  lutin
+-  lutout
+-  status
 
 The capfast directory contains: 
                  The capfast symbols for the various Gemini records.

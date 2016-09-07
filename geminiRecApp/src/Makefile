@@ -19,7 +19,6 @@ DBDINC += menuCarstates
 DBDINC += menuDirective
 DBDINC += menuSimulation
 DBDINC += cmdTimeoutRecord
-DBDINC += loadRecord
 DBDINC += lutinRecord
 DBDINC += lutoutRecord
 DBDINC += statusRecord
@@ -35,7 +34,6 @@ DBD += menuCarstates.dbd
 DBD += menuDirective.dbd
 DBD += menuSimulation.dbd
 DBD += cmdTimeoutRecord.dbd
-DBD += loadRecord.dbd
 DBD += lutinRecord.dbd
 DBD += lutoutRecord.dbd
 DBD += statusRecord.dbd
@@ -53,10 +51,10 @@ geminiRecords_DBD += menuCarstates.dbd
 geminiRecords_DBD += menuDirective.dbd
 geminiRecords_DBD += menuSimulation.dbd
 geminiRecords_DBD += cmdTimeoutRecord.dbd
-geminiRecords_DBD += loadRecord.dbd
 geminiRecords_DBD += lutinRecord.dbd
 geminiRecords_DBD += lutoutRecord.dbd
 geminiRecords_DBD += statusRecord.dbd
+geminiRecords_DBD += gemDevSoft.dbd
 
 LIBRARY_IOC += geminiRecords
 geminiRecords_SRCS += genSubRecord.c
@@ -65,19 +63,14 @@ geminiRecords_SRCS += cadRecord.c
 geminiRecords_SRCS += carRecord.c
 geminiRecords_SRCS += sirRecord.c
 geminiRecords_SRCS += cmdTimeoutRecord.c
-geminiRecords_SRCS += loadRecord.c
 geminiRecords_SRCS += lutinRecord.c
 geminiRecords_SRCS += lutoutRecord.c
 geminiRecords_SRCS += statusRecord.c
+geminiRecords_SRCS += devLutinSoft.c
+geminiRecords_SRCS += devLutoutSoft.c
+geminiRecords_SRCS += devStatusSoft.c
 
 geminiRecords_LIBS += $(EPICS_BASE_IOC_LIBS)
-
-#LIBRARY_IOC += testGeminiRecs
-
-#testGeminiRecs_SRCS += testGeminiRecs.c
-#testGeminiRecs_LIBS += geminiRecords tcslib
-
-#DBD += testGeminiRecs.dbd
 
 INC += cad.h
 INC += lut.h
