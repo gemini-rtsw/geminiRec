@@ -78,7 +78,6 @@
 
 static long init_record();
 static long process();
-static long get_value();
 static long get_enum_str();
 static long get_enum_strs();
 static long put_enum_str();
@@ -101,7 +100,7 @@ rset applyRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -502,20 +501,6 @@ static void endInLinkProc( applyRecord *papply )
   recGblGetTimeStamp(papply);
   monitor(papply);
   recGblFwdLink(papply);
-}
-
-
-/*******************************************************************************
-* get_value
-*/
-
-static long get_value( applyRecord *papply, struct valueDes *pvdes )
-{
-    pvdes->field_type  = DBF_LONG;
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *)&papply->val;
-
-    return 0;
 }
 
 

@@ -60,7 +60,6 @@ typedef long (*SUBFUNCPTR)(sirRecord *);
 
 /* Create RSET - Record Support Entry Table*/
 static long process (sirRecord *);
-static long get_value (sirRecord *, struct valueDes *);
 static long get_units (struct dbAddr *, char *);
 static long init_record (sirRecord *, int);
 static long cvt_dbaddr (struct dbAddr *);
@@ -84,7 +83,7 @@ rset sirRSET = {
   init_record,
   process,
   special,
-  get_value,
+  NULL,
   cvt_dbaddr,
   get_array_info,
   put_array_info,
@@ -276,16 +275,6 @@ static long process( sirRecord *psir )
   psir->pact = FALSE;
   return 0;
 }
-
-
-static long get_value( sirRecord *psir, struct valueDes *pvdes )
-{
-  pvdes->no_elements = psir->nelm;
-  pvdes->pvalue      = psir->val;
-  pvdes->field_type  = psir->ftvl;
-  return 0;
-}
-
 
 static long cvt_dbaddr( struct dbAddr *paddr )
 {

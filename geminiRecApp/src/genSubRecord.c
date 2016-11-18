@@ -70,7 +70,6 @@ typedef long (*SUBFUNCPTR)(genSubRecord *);
 
 static long init_record();
 static long process();
-static long get_value();
 static long get_precision();
 static long cvt_dbaddr();
 static long get_array_info();
@@ -93,7 +92,7 @@ rset genSubRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -603,19 +602,6 @@ static long get_precision( struct dbAddr *paddr, long *precision )
     return(0);
 }
 
-
-static long get_value( genSubRecord *pgsub, struct valueDes *pvdes )
-{
-#if DEBUG
-    printf("Calling get_value...\n");
-#endif
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *)(&pgsub->val);
-    pvdes->field_type  = DBF_LONG;
-    return(0);
-}
-
-
 static void monitor( genSubRecord *pgsub, int reset )
 {
   int            i;
@@ -1073,13 +1059,13 @@ static long findField( int flag, struct dbAddr *paddr, long *no_elements, long n
       if( flag == 1 )
       {
         paddr->pfield      = pgsub->t;
-        paddr->no_elements = pgsub->not;
+        paddr->no_elements = pgsub->NOT;
         paddr->field_type  = pgsub->ftt;
       }
       else if( flag == 2 )
-        *no_elements = pgsub->not;
+        *no_elements = pgsub->NOT;
       else if( flag == 3 )
-        pgsub->not = nNew;
+        pgsub->NOT = nNew;
       break;
 
     case genSubRecordU:

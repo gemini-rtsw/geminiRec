@@ -76,7 +76,6 @@
 /* Create RSET - Record Support Entry Table*/
 static long init_record();
 static long process();
-static long get_value();
 static long get_units();
 static long get_graphic_double();
 static long get_control_double();
@@ -99,7 +98,7 @@ rset statusRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -200,16 +199,6 @@ static long process( statusRecord *pstatus )
 	pstatus->pact=FALSE;
 	return(status);
 }
-
-
-static long get_value( statusRecord *pstatus, struct valueDes *pvdes )
-{
-    pvdes->field_type  = DBF_LONG;
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *)&pstatus->val;
-    return(0);
-}
-
 
 static long get_units(paddr,units)
     struct dbAddr *paddr;

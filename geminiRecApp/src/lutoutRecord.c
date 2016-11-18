@@ -50,7 +50,6 @@ static long		   get_enum_strs();
 static long		   cvt_dbaddr();
 static long		   special();
 static long		   get_precision();
-static long		   get_value();
 #define get_enum_str	   NULL
 #define put_enum_str	   NULL
 #define report		   NULL
@@ -70,7 +69,7 @@ rset lutoutRSET =
     init_record,
     process,
     special,
-    get_value,
+    NULL,
     cvt_dbaddr,
     get_array_info,
     put_array_info,
@@ -262,15 +261,6 @@ static long special (
 
 /*******************************************************************************
 */
-
-static long get_value( lutoutRecord *plutout, struct valueDes *pvdes )
-{
-    pvdes->field_type  = DBF_STRING;
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *) (&plutout->val[0]);
-    return 0;
-}
-
 
 static long cvt_dbaddr( struct dbAddr *paddr )
 {

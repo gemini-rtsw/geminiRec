@@ -70,7 +70,6 @@ typedef long (*SUBFUNCPTR)(cadRecord *);
 
 static long init_record();
 static long process();
-static long get_value();
 static long get_precision();
 static long get_enum_str();
 static long get_enum_strs();
@@ -93,7 +92,7 @@ rset cadRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -492,16 +491,6 @@ static long process( cadRecord *pcad )
   }
   return(0);
 }
-
-
-static long get_value( cadRecord *pcad, struct valueDes *pvdes )
-{
-    pvdes->field_type  = DBF_LONG;
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *)(&pcad->val);
-    return(0);
-}
-
 
 static void monitor( cadRecord *pcad, int reset )
 {

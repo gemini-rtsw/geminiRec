@@ -53,7 +53,6 @@
 
 static long init_record();
 static long process();
-static long get_value();
 static long get_enum_str();
 static long get_enum_strs();
 static long put_enum_str();
@@ -76,7 +75,7 @@ rset carRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -288,16 +287,6 @@ static long process( carRecord *pcar )
 
   return(status);
 }
-
-
-static long get_value( carRecord *pcar, struct valueDes *pvdes )
-{
-    pvdes->field_type  = DBF_STRING;
-    pvdes->no_elements = 1;
-    pvdes->pvalue      = (void *)(&pcar->val);
-    return(0);
-}
-
 
 static void monitor( carRecord *pcar )
 {
