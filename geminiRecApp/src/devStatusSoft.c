@@ -81,11 +81,10 @@ static long init_record( struct statusRecord *pstatus )
 static long read_status( struct statusRecord *pstatus )
 {
     long status;
-    long options = 0;
     long nRequest = 1;
 
-    status = dbGetLinkValue(&(pstatus->inp), DBR_LONG, &(pstatus->val),
-                        &options, &nRequest);
+    status = dbGetLink(&(pstatus->inp), DBR_LONG, &(pstatus->val),
+                        NULL, &nRequest);
 
     if(RTN_SUCCESS(status)) 
        pstatus->udf=FALSE;

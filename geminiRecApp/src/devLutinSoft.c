@@ -101,7 +101,6 @@ static long read_lutin( struct lutinRecord *plutin )
 {
     long           status;
     long           nRequest;
-    long           options;
     long           i;
     struct link    *plink;
     void           **valptr;
@@ -109,13 +108,12 @@ static long read_lutin( struct lutinRecord *plutin )
 
                /* get all input links */
     nRequest = 1;
-    options  = 0;
     plink    = &plutin->inpa;
     valptr   = &plutin->vala;
     typptr   = &plutin->ftva;
     for( i=0; i<LUT_NUM_SZ; i++, plink++, valptr++, typptr++ )
     {
-        status = dbGetLinkValue(plink, *typptr, *valptr, &options, &nRequest);
+        status = dbGetLink(plink, *typptr, *valptr, NULL, &nRequest);
    if( status )
         {
           printf("Status %ld from dbGetLink (%ld)\n", status, i);
