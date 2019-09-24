@@ -505,13 +505,14 @@ static long read_file( lutinRecord *plutin )
 	{
 	    /* skip blank lines and comments */
 	    n = fscanf (fp, "%s", tag);
-	    if (n == 0 || tag[0] == '#')
+	    /* EOF */
+	    if (n == -1) {
+		break;
+	    }
+	    else if (n == 0 || tag[0] == '#')
 	    {
 		(void) fgets (buf, sizeof (buf)-1, fp);
 	    }
-	    /* EOF */
-	    else if (n == -1)
-		break;
 	    /* create new node, read tag and number of values */
 	    else
 	    {
