@@ -36,8 +36,12 @@
 #include        <lutinRecord.h>
 #undef  GEN_SIZE_OFFSET
 
-#include "epicsExport.h"
+#include <epicsExport.h>
+#include <iocsh.h>
+#include <errlog.h>
 
+
+static int debugLevel = 0;
 
 /* Create RSET - Record Support Entry Table*/
  
@@ -490,6 +494,8 @@ static long read_file( lutinRecord *plutin )
     }
 
     sprintf (buf, "%s/%s", plutin->fdir, plutin->fnam);
+    if (debugLevel > 0)
+	    errlogPrintf("Reading %s\n", buf);
     if ((fp = fopen (buf, "r")) == NULL)
     {
 	recGblRecordError (S_db_badField, (void *) plutin, "lutinRecord: read_file FDIR | FNAM");
@@ -558,3 +564,23 @@ static long read_file( lutinRecord *plutin )
 
     return status;
 }
+
+static const iocshArg debugLevelArg = { "level", iocshArgInt };
+static const iocshArg *setDebugLevelArgs[] = { &debugLevelArg };
+static const iocshFuncDef setDebugLevelFuncDef = {"lutinSetDebug", 1, setDebugLevelArgs};
+static void setDebugLevelFunc(const iocshArgBuf *args) {
+	int rawValue = args[0].ival;
+
+	if ((rawValue >= 0) && (rawValue < 3))
+		debugLevel = rawValue;
+	else if (rawValue > 0)
+		debugLevel = 2;
+	else
+		debugLevel = 0;
+}
+
+static void lutinRegister(void) {
+	iocshRegister(&setDebugLevelFuncDef, setDebugLevelFunc);
+}
+
+epicsExportRegistrar(lutinRegister);

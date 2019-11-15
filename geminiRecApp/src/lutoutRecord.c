@@ -39,7 +39,11 @@
 #include        <lutoutRecord.h>
 #undef  GEN_SIZE_OFFSET
 
-#include "epicsExport.h"
+#include <epicsExport.h>
+#include <iocsh.h>
+#include <errlog.h>
+
+static int debugLevel = 0;
 
 
 /* Create RSET - Record Support Entry Table */
@@ -494,7 +498,8 @@ static long read_file( lutoutRecord *plutout )
     }
 
     sprintf (buf, "%s/%s", plutout->fdir, plutout->fnam);
-printf("%s\n", buf);
+    if (debugLevel > 0)
+	    errlogPrintf("Reading %s\n", buf);
     if ((fp = fopen (buf, "r")) == NULL)
     {
 	recGblRecordError (S_db_badField, (void *) plutout, "lutoutRecord: read_file FDIR | FNAM");
@@ -523,14 +528,10 @@ printf("%s\n", buf);
 		p = (LUT *) malloc (sizeof (LUT));
 		ellAdd ((ELLLIST *) plutout->ltbl, (ELLNODE *) p);
 		strncpy (p->tag, tag, LUT_TAG_SZ);
-printf("tag = %s;  ", tag);
 		if (fscanf (fp, "%ld", &p->nval) != 1)
 		    status = -1;
 		else if( p->nval )
-{
 		    count++;
-printf("nval = %ld\n", p->nval);
-}
 	    }
 	}
 	/* add values in existing entry */
@@ -566,3 +567,23 @@ printf("nval = %ld\n", p->nval);
 
     return status;
 }
+
+static const iocshArg debugLevelArg = { "level", iocshArgInt };
+static const iocshArg *setDebugLevelArgs[] = { &debugLevelArg };
+static const iocshFuncDef setDebugLevelFuncDef = {"lutoutSetDebug", 1, setDebugLevelArgs};
+static void setDebugLevelFunc(const iocshArgBuf *args) {
+	int rawValue = args[0].ival;
+
+	if ((rawValue >= 0) && (rawValue < 3))
+		debugLevel = rawValue;
+	else if (rawValue > 0)
+		debugLevel = 2;
+	else
+		debugLevel = 0;
+}
+
+static void lutoutRegister(void) {
+	iocshRegister(&setDebugLevelFuncDef, setDebugLevelFunc);
+}
+
+epicsExportRegistrar(lutoutRegister);

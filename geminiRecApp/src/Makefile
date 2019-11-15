@@ -38,6 +38,7 @@ DBD += lutinRecord.dbd
 DBD += lutoutRecord.dbd
 DBD += statusRecord.dbd
 DBD += geminiRecords.dbd
+DBD += lutFunc.dbd
 
 
 # geminiRecords.dbd is made from all the individual .dbd files. 
