@@ -11,9 +11,11 @@
  *                                  "dbGetLink" in EPICS 3.13.9.
  *      Version 1.2  05/07/04  ajf  Converted to 3.14.
  *
+ *      Version 4.0  20200617  mdw  Added #include <dbLink.h> for EPICS R3.15
+ *
  */
 
-#define VERSION 1.2
+#define VERSION 4.0
 
 #define DEBUG 0
 
@@ -487,50 +489,56 @@ static long get_precision( struct dbAddr *paddr, long *pprecision )
 
 void getCARMessVal( cmdTimeoutRecord *pcto )
 {
-  long status;
+  //long status;
   long nRequest;
   long opt;
 
   nRequest = 1;
   opt      = 0;
-  status   = dbGetLink( &pcto->icrm, DBR_STRING, pcto->mess, &opt, &nRequest );
+  // status   = dbGetLink( &pcto->icrm, DBR_STRING, pcto->mess, &opt, &nRequest );
+  dbGetLink( &pcto->icrm, DBR_STRING, pcto->mess, &opt, &nRequest );
 
   nRequest = 1;
   opt      = 0;
-  status   = dbGetLink( &pcto->icrv, DBR_LONG,   &pcto->val, &opt, &nRequest );
+  // status   = dbGetLink( &pcto->icrv, DBR_LONG,   &pcto->val, &opt, &nRequest );
+  dbGetLink( &pcto->icrv, DBR_LONG,   &pcto->val, &opt, &nRequest );
 }
 
 
 void setCARMessVal( cmdTimeoutRecord *pcto, char *errMsg, long val )
 {
-  long status;
+  //long status;
   long nRequest = 1;
 
   strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
   pcto->val = val;
-  status    = dbPutLink( &pcto->omss, DBR_STRING,  pcto->mess, nRequest );
-  status    = dbPutLink( &pcto->oval, DBR_LONG,   &pcto->val,  nRequest );
+  //status    = dbPutLink( &pcto->omss, DBR_STRING,  pcto->mess, nRequest );
+  //status    = dbPutLink( &pcto->oval, DBR_LONG,   &pcto->val,  nRequest );
+  dbPutLink( &pcto->omss, DBR_STRING,  pcto->mess, nRequest );
+  dbPutLink( &pcto->oval, DBR_LONG,   &pcto->val,  nRequest );
 }
 
 
 void getCADMessVal( cmdTimeoutRecord *pcto )
 {
-  long status;
+  // long status;
   long nRequest;
   long opt;
 
   nRequest = 1;
   opt      = 0;
-  status   = dbGetLink( &pcto->icdm, DBR_STRING, pcto->mess, &opt, &nRequest );
+  //status   = dbGetLink( &pcto->icdm, DBR_STRING, pcto->mess, &opt, &nRequest );
+  dbGetLink( &pcto->icdm, DBR_STRING, pcto->mess, &opt, &nRequest );
 
   nRequest = 1;
   opt      = 0;
-  status   = dbGetLink( &pcto->icdv, DBR_LONG,   &pcto->val, &opt, &nRequest );
+  //status   = dbGetLink( &pcto->icdv, DBR_LONG,   &pcto->val, &opt, &nRequest );
+  dbGetLink( &pcto->icdv, DBR_LONG,   &pcto->val, &opt, &nRequest );
 }
 
 void setCADVal( cmdTimeoutRecord *pcto, long val )
 {
-  long status;
+  // long status;
   long nRequest = 1;
 
 #if DEBUG
@@ -538,7 +546,8 @@ void setCADVal( cmdTimeoutRecord *pcto, long val )
 #endif
 
   pcto->val = val;
-  status    = dbPutLink( &pcto->odir, DBR_LONG, &pcto->val, nRequest );
+  //status    = dbPutLink( &pcto->odir, DBR_LONG, &pcto->val, nRequest );
+  dbPutLink( &pcto->odir, DBR_LONG, &pcto->val, nRequest );
 }
 
 
