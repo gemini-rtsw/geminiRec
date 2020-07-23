@@ -21,8 +21,4 @@
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
-<<<<<<< HEAD
 EPICS_BASE=/gem_base/epics/epics-base
-=======
-EPICS_BASE=/gem_sw/epics/R3.15.8/base
->>>>>>> 4-1-11-R3158-2
