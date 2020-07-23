@@ -1,5 +1,5 @@
 %define _prefix /gem_base/epics/support
-%define name sequencer
+%define name geminiRec
 %define version 3.15.8
 %define release 4.1.13
 %define repository gemdev
