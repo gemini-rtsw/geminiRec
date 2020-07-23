@@ -32,7 +32,9 @@
  * .01  11-11-91        jba     Moved set of alarm stat and sevr to macros
  * .02  03-13-92        jba     ANSI C changes
  * .03  10-10-92        jba     replaced code with recGblGetLinkValue call
- * .04 2016-08-03       mdw     Chnages for EPICS R3.14/OSI 
+ * .04 2016-08-03       mdw     Changes for EPICS R3.14/OSI 
+ * .05 2020-06-17       mdw     Added #include <dbLink> for EPICS R3.15 
+ *                              Replaced dbGetLinkValue(), which doesn't exist any more with dbGetLink()  
 */
 
 
@@ -44,6 +46,7 @@
 #include   <recGbl.h>
 #include   <epicsExport.h>
 
+#include   <dbLink.h>
 
 #include   <statusRecord.h>
 
@@ -84,7 +87,9 @@ static long read_status( struct statusRecord *pstatus )
     long options = 0;
     long nRequest = 1;
 
-    status = dbGetLinkValue(&(pstatus->inp), DBR_LONG, &(pstatus->val),
+    // status = dbGetLinkValue(&(pstatus->inp), DBR_LONG, &(pstatus->val),
+    //                    &options, &nRequest);
+    status = dbGetLink(&(pstatus->inp), DBR_LONG, &(pstatus->val),
                         &options, &nRequest);
 
     if(RTN_SUCCESS(status)) 

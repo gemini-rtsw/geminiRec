@@ -5,6 +5,17 @@
         - Moved load record support to PMAC module
         - Merged in soft device support from gemSoftDev module
 
+18 June 2020 V4-1-11-R315
+        - Updated for EPICS R3.15
+        - Removed get_value() from RSETs, since this record support function doesn't exist
+          any more in EPICS R3.15
+        - calls to dbGetLinkValue() changed to dbGetLink() 
+          because dbGetLinkValue() no longer exists -- it was never supposed to be called directly
+          anyway, but via the dbGetLink() macro.
+        - dbGetLink() is now a function instead of a macro, so 
+          #include <dbLink.h> had to be added to all xxxRecord.c files
+        - Cleanup of unused variables in several modules
+
 23 July 2020 V4.1.13
         - importet into RPM structure
 

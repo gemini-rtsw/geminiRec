@@ -37,11 +37,13 @@
  *                                  "dbGetLink" in EPICS 3.13.9.
  *      Version 2.8  15/04/04  ajf  Conversion to EPICS 3.14.5.
  *      Version 2.9  27/07/12  pgr  Fixed problem 64-bit problem in subroutine address
- *
+ *      
+ *      Version 4.0 20200617   mdw  Removed get_value() from RSET for EPICS R3.15
+ *                                  Added #include <dbLink.h> for EPICS R3.15
  */
 
 #define DEBUG   0
-#define VERSION 2.9
+#define VERSION 4.0
 
 #include	<stdlib.h>
 #include	<stdio.h>
@@ -60,6 +62,8 @@
 #include	<registryFunction.h>
 #include	<epicsExport.h>
 
+#include        <dbLink.h>
+
 #define GEN_SIZE_OFFSET
 #include	<cadRecord.h>
 #undef  GEN_SIZE_OFFSET
@@ -70,7 +74,7 @@ typedef long (*SUBFUNCPTR)(cadRecord *);
 
 static long init_record();
 static long process();
-static long get_value();
+//static long get_value();
 static long get_precision();
 static long get_enum_str();
 static long get_enum_strs();
@@ -93,7 +97,7 @@ rset cadRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -494,6 +498,7 @@ static long process( cadRecord *pcad )
 }
 
 
+#if 0
 static long get_value( cadRecord *pcad, struct valueDes *pvdes )
 {
     pvdes->field_type  = DBF_LONG;
@@ -501,7 +506,7 @@ static long get_value( cadRecord *pcad, struct valueDes *pvdes )
     pvdes->pvalue      = (void *)(&pcad->val);
     return(0);
 }
-
+#endif
 
 static void monitor( cadRecord *pcad, int reset )
 {

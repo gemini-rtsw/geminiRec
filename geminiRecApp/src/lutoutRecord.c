@@ -14,9 +14,11 @@
  *                                 Set precision of VERS field to 1.
  *      Version 1.6 05/07/04  ajf  Changes for 3.14.
  *
+ *      Version 4.0 20200617  mdw  Removed get_value() from RSET for EPICS R3.15
+ *                                 Added #include <dbLink.h> for EPICS R3.15
  */
 
-#define VERSION 1.6
+#define VERSION 4.0
 
 #include	<stdlib.h>
 #include        <stdio.h>
@@ -34,6 +36,8 @@
 #include        <devSup.h>
 #include        <special.h>
 #include	<lut.h>
+
+#include        <dbLink.h>
 
 #define GEN_SIZE_OFFSET
 #include        <lutoutRecord.h>
@@ -54,7 +58,7 @@ static long		   get_enum_strs();
 static long		   cvt_dbaddr();
 static long		   special();
 static long		   get_precision();
-static long		   get_value();
+//static long		   get_value();
 #define get_enum_str	   NULL
 #define put_enum_str	   NULL
 #define report		   NULL
@@ -74,7 +78,7 @@ rset lutoutRSET =
     init_record,
     process,
     special,
-    get_value,
+    NULL,
     cvt_dbaddr,
     get_array_info,
     put_array_info,
@@ -267,6 +271,7 @@ static long special (
 /*******************************************************************************
 */
 
+#if 0
 static long get_value( lutoutRecord *plutout, struct valueDes *pvdes )
 {
     pvdes->field_type  = DBF_STRING;
@@ -274,7 +279,7 @@ static long get_value( lutoutRecord *plutout, struct valueDes *pvdes )
     pvdes->pvalue      = (void *) (&plutout->val[0]);
     return 0;
 }
-
+#endif
 
 static long cvt_dbaddr( struct dbAddr *paddr )
 {

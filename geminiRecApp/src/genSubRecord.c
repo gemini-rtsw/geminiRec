@@ -38,10 +38,13 @@
  *                                  Modify declarations of "SADR" and "OSAD" in the "dbd" file.
  *                                  Fix all compilation warnings for 32-bit and 64-bit.
  *
+ *      Version 4.0  20200617  mdw  Removed get_value() from RSET for EPICS R3.15
+ *                                  Added #include <dbLink.h> for EPICS R3.15
+ *                                  Changed "not" field to "NOT" because "not" is reserved
  */
 
 #define DEBUG   0
-#define VERSION 1.8
+#define VERSION 4.0
 
 #include	<stdlib.h>
 #include	<stdio.h>
@@ -60,6 +63,8 @@
 #include 	<epicsExport.h>
 #include 	<recGbl.h>
 
+#include        <dbLink.h>
+
 #define GEN_SIZE_OFFSET
 #include	<genSubRecord.h>
 #undef  GEN_SIZE_OFFSET
@@ -70,7 +75,7 @@ typedef long (*SUBFUNCPTR)(genSubRecord *);
 
 static long init_record();
 static long process();
-static long get_value();
+//static long get_value();
 static long get_precision();
 static long cvt_dbaddr();
 static long get_array_info();
@@ -93,7 +98,7 @@ rset genSubRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -140,7 +145,7 @@ static long init_record( genSubRecord *pgsub, int pass )
   SUBFUNCPTR     psubroutine;
   SUBFUNCPTR     sub_addr;
   long	         status;
-  long           error;
+//  long           error;
   int            i;
   int            j;
   char           *ufunct;
@@ -426,7 +431,8 @@ static long init_record( genSubRecord *pgsub, int pass )
           else
           {
             psubroutine = sub_addr;
-            error       = psubroutine(pgsub);
+            //error       = psubroutine(pgsub);
+            psubroutine(pgsub);
           }
         }
       }
@@ -603,7 +609,7 @@ static long get_precision( struct dbAddr *paddr, long *precision )
     return(0);
 }
 
-
+#if 0
 static long get_value( genSubRecord *pgsub, struct valueDes *pvdes )
 {
 #if DEBUG
@@ -614,7 +620,7 @@ static long get_value( genSubRecord *pgsub, struct valueDes *pvdes )
     pvdes->field_type  = DBF_LONG;
     return(0);
 }
-
+#endif 
 
 static void monitor( genSubRecord *pgsub, int reset )
 {
@@ -1073,13 +1079,13 @@ static long findField( int flag, struct dbAddr *paddr, long *no_elements, long n
       if( flag == 1 )
       {
         paddr->pfield      = pgsub->t;
-        paddr->no_elements = pgsub->not;
+        paddr->no_elements = pgsub->NOT;
         paddr->field_type  = pgsub->ftt;
       }
       else if( flag == 2 )
-        *no_elements = pgsub->not;
+        *no_elements = pgsub->NOT;
       else if( flag == 3 )
-        pgsub->not = nNew;
+        pgsub->NOT = nNew;
       break;
 
     case genSubRecordU:

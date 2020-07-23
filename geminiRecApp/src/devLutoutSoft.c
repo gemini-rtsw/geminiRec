@@ -60,7 +60,7 @@ static long write_lutout( struct lutoutRecord *plutout )
 {
     long           i;
     long           nRequest;
-    long           status;
+    //long           status;
     struct link    *plink;
     unsigned short *typptr;
     void           **valptr;
@@ -70,7 +70,8 @@ static long write_lutout( struct lutoutRecord *plutout )
     valptr   = &plutout->vala;
     typptr   = &plutout->ftva;
     for( i=0; i<LUT_NUM_SZ; i++, plink++, valptr++, typptr++ )
-      status = dbPutLink( plink, *typptr, *valptr, nRequest );
+      //status = dbPutLink( plink, *typptr, *valptr, nRequest );
+      dbPutLink( plink, *typptr, *valptr, nRequest );
 
     return 0;
 }

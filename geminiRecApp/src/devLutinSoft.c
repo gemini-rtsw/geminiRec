@@ -15,6 +15,7 @@
  * -------
  * Version 1.0  16/10/97   ajf  Changes for 3.13.
  * Version 2.0  2016-08-03 mdw  Changes for R3.14/OSI
+ * Version 2.1  2020-06-17 mdw  Replaced dbGetLinkValue(), which doesn't exist any more  with dbGetLink()
  *
 */
 
@@ -115,7 +116,8 @@ static long read_lutin( struct lutinRecord *plutin )
     typptr   = &plutin->ftva;
     for( i=0; i<LUT_NUM_SZ; i++, plink++, valptr++, typptr++ )
     {
-        status = dbGetLinkValue(plink, *typptr, *valptr, &options, &nRequest);
+        // status = dbGetLinkValue(plink, *typptr, *valptr, &options, &nRequest);
+        status = dbGetLink(plink, *typptr, *valptr, &options, &nRequest);
    if( status )
         {
           printf("Status %ld from dbGetLink (%ld)\n", status, i);

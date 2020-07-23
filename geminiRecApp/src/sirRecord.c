@@ -30,10 +30,12 @@
  *      Version 2.1  15/04/04  ajf  Conversion to EPICS 3.14.5.
  *      Version 2.2  27/07/12  pgr  Fix 64-bit problem in subroutine address
  *
- */
+ *      Version 4.0  20200617  mdw  Removed get_value() from RSET for EPICS R3.15
+ *                                  Added #include <dbLink.h> for EPICS R3.15
+ */   
 
 #define DEBUG   0
-#define VERSION 2.2
+#define VERSION 4.0
 
 #include        <stdlib.h>
 #include	<stdio.h>
@@ -52,6 +54,9 @@
 #include 	<registryFunction.h>
 #include 	<epicsExport.h>
 
+#include        <dbLink.h>
+
+
 #define GEN_SIZE_OFFSET
 #include        <sirRecord.h>
 #undef  GEN_SIZE_OFFSET
@@ -60,7 +65,7 @@ typedef long (*SUBFUNCPTR)(sirRecord *);
 
 /* Create RSET - Record Support Entry Table*/
 static long process (sirRecord *);
-static long get_value (sirRecord *, struct valueDes *);
+//static long get_value (sirRecord *, struct valueDes *);
 static long get_units (struct dbAddr *, char *);
 static long init_record (sirRecord *, int);
 static long cvt_dbaddr (struct dbAddr *);
@@ -84,7 +89,7 @@ rset sirRSET = {
   init_record,
   process,
   special,
-  get_value,
+  NULL,
   cvt_dbaddr,
   get_array_info,
   put_array_info,
@@ -277,7 +282,7 @@ static long process( sirRecord *psir )
   return 0;
 }
 
-
+#if 0
 static long get_value( sirRecord *psir, struct valueDes *pvdes )
 {
   pvdes->no_elements = psir->nelm;
@@ -285,7 +290,7 @@ static long get_value( sirRecord *psir, struct valueDes *pvdes )
   pvdes->field_type  = psir->ftvl;
   return 0;
 }
-
+#endif
 
 static long cvt_dbaddr( struct dbAddr *paddr )
 {

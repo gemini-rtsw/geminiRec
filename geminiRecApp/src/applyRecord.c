@@ -45,12 +45,14 @@
  *                                  "dbGetLink" in EPICS 3.13.9.
  *      Version 3.5  14/04/04  ajf  Conversion to EPICS 3.14.5.
  *
+ *      Version 4.0  20200617  mdw  Removed get_value() from RSET for EPICS R3.15  
+ *                                  Added #include <dbLink.h> for EPICS R3.15
  */
 
 #define DEBUG   0
 #define DEBUG1  0
 #define DEBUG2  0
-#define VERSION 3.5
+#define VERSION 4.0
 
 #include	<stdlib.h>
 #include	<stdio.h>
@@ -70,6 +72,8 @@
 #include 	<epicsTimer.h>
 #include	<epicsExport.h>
 
+#include        <dbLink.h>
+
 #define GEN_SIZE_OFFSET
 #include	<applyRecord.h>
 #undef  GEN_SIZE_OFFSET
@@ -78,7 +82,7 @@
 
 static long init_record();
 static long process();
-static long get_value();
+//static long get_value();
 static long get_enum_str();
 static long get_enum_strs();
 static long put_enum_str();
@@ -101,7 +105,7 @@ rset applyRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -509,6 +513,7 @@ static void endInLinkProc( applyRecord *papply )
 * get_value
 */
 
+#if 0
 static long get_value( applyRecord *papply, struct valueDes *pvdes )
 {
     pvdes->field_type  = DBF_LONG;
@@ -517,7 +522,7 @@ static long get_value( applyRecord *papply, struct valueDes *pvdes )
 
     return 0;
 }
-
+#endif
 
 /*******************************************************************************
 * get_enum_str

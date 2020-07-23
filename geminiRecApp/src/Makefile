@@ -42,7 +42,6 @@ DBD += lutFunc.dbd
 
 
 # geminiRecords.dbd is made from all the individual .dbd files. 
-geminiRecords_DBD += base.dbd
 geminiRecords_DBD += genSubRecord.dbd
 geminiRecords_DBD += applyRecord.dbd
 geminiRecords_DBD += cadRecord.dbd

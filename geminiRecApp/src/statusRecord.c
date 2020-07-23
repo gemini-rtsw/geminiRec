@@ -48,9 +48,12 @@
  *                              in EPICS 3.13.9.
  * Version 2.7  05/07/04  ajf   Convert to EPICS 3.14.
  *
+ * Version 4.0  20200617  mdw   Removed get_value() from RSET for EPICS R3.15
+ *                              Added #include <dbLink.h> for EPICS R3.15
+ *
  */
 
-#define VERSION 2.7
+#define VERSION 4.0
 
 #include        <stdlib.h>
 #include        <stdio.h>
@@ -67,6 +70,8 @@
 #include        <devSup.h>
 #include        <menuYesNo.h>
 
+#include        <dbLink.h>
+
 #define GEN_SIZE_OFFSET
 #include	<statusRecord.h>
 #undef GEN_SIZE_OFFSET
@@ -76,7 +81,7 @@
 /* Create RSET - Record Support Entry Table*/
 static long init_record();
 static long process();
-static long get_value();
+// static long get_value();
 static long get_units();
 static long get_graphic_double();
 static long get_control_double();
@@ -99,7 +104,7 @@ rset statusRSET={
 	init_record,
 	process,
 	special,
-	get_value,
+	NULL,
 	cvt_dbaddr,
 	get_array_info,
 	put_array_info,
@@ -201,7 +206,7 @@ static long process( statusRecord *pstatus )
 	return(status);
 }
 
-
+#if 0
 static long get_value( statusRecord *pstatus, struct valueDes *pvdes )
 {
     pvdes->field_type  = DBF_LONG;
@@ -209,7 +214,7 @@ static long get_value( statusRecord *pstatus, struct valueDes *pvdes )
     pvdes->pvalue      = (void *)&pstatus->val;
     return(0);
 }
-
+#endif
 
 static long get_units(paddr,units)
     struct dbAddr *paddr;
