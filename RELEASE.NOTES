@@ -4,3 +4,7 @@
 07 Sept 2016 V4-0-3   MDW
         - Moved load record support to PMAC module
         - Merged in soft device support from gemSoftDev module
+
+23 July 2020 V4.1.13
+        - importet into RPM structure
+
