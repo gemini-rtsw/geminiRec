@@ -84,6 +84,11 @@ rm -rf $RPM_BUILD_ROOT
    /%{_prefix}/%{name}/configure
 
 %changelog
+* Sun Jul 26 2020 fkraemer <fkraemer@gemini.edu> 3.15.8-4.1.13.20200726ff76345
+- RPM build possible
+- no bin dir, so removed from specfile (fkraemer@gemini.edu)
+- added gemini-ade dependency (fkraemer@gemini.edu)
+
 * Wed Jul 22 2020 fkraemer <fkraemer@gemini.edu> 3.15.8-4.1.13.20200722b932e58
 - fixed a merge conflict (fkraemer@gemini.edu)
 
