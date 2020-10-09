@@ -19,7 +19,7 @@
 Summary: %{name} Package, a module for EPICS base
 Name: %{name}
 Version: 4.1.13
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: EPICS Open License
 Group: Applications/Engineering
 Source0: %{name}-%{version}.tar.gz
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
    /%{_prefix}/%{name}/configure
 
 %changelog
+* Thu Oct 08 2020 fkraemer <fkraemer@gemini.edu> 4.1.13-2
+- applied tito configuration for new yum repositories
+- applied new version/release scheme
 * Fri Aug 28 2020 Felix Kraemer <fkraemer@gemini.edu> 3.15.8-4.1.13.202008282139560fda4
 - Adjustments to import configuration from configure/RELEASE.local for testing
   puposes (fkraemer@gemini.edu)
