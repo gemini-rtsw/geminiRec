@@ -177,6 +177,9 @@ static long init_record( applyRecord *papply, int pass )
   long status = 0;
   int i;
 
+
+  printf("Apply init %p: ", (void*)papply);
+
   if(pass == 0)
   {
     papply->vers = VERSION;
