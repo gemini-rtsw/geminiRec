@@ -376,7 +376,7 @@ static long process( applyRecord *papply )
         printf("%s: IN with DIR processing - Do nothing\n", papply->name);
 #endif
         papply->pact = FALSE;
-        return status;
+//        return status;
       }
 
       papply->nprc--;
