@@ -178,7 +178,7 @@ static long init_record( applyRecord *papply, int pass )
   int i;
 
 
-  printf("Apply init %p: ", (void*)papply);
+  printf("Apply init %p: \n", (void*)papply);
 
   if(pass == 0)
   {
