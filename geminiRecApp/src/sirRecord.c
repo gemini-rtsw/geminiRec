@@ -64,12 +64,15 @@
 typedef long (*SUBFUNCPTR)(sirRecord *);
 
 /* Create RSET - Record Support Entry Table*/
-static long process (sirRecord *);
+//static long process (sirRecord *);
+static long process ();
 //static long get_value (sirRecord *, struct valueDes *);
 static long get_units (struct dbAddr *, char *);
-static long init_record (sirRecord *, int);
+//static long init_record (sirRecord *, int);
+static long init_record ();
 static long cvt_dbaddr (struct dbAddr *);
-static long get_precision (struct dbAddr *, long *);
+//static long get_precision (struct dbAddr *, long *);
+static long get_precision ();
 static long get_alarm_double (struct dbAddr *, struct dbr_alDouble *);
 static long get_array_info (struct dbAddr *, long *, long *);
 static long put_array_info (struct dbAddr *, long);
@@ -369,8 +372,8 @@ static long findField( int flag, struct dbAddr *paddr, long *no_elements, long n
 static long get_units( struct dbAddr *paddr, char *punits )
 {
   sirRecord *psir = (sirRecord *) paddr->precord;
-
-  strncpy (punits, psir->egu, sizeof (psir->egu));
+ //strncpy (punits, psir->egu, sizeof (psir->egu));
+  strncpy (punits, psir->egu, MAX_STRING_SIZE);
   return 0;
 }
 
@@ -495,7 +498,8 @@ static void monitor( sirRecord *psir )
   if (strncmp (psir->mmss, psir->omss, sizeof (psir->omss)))
   {
     monitor_mask |= DBE_VALUE;
-    strncpy (psir->mmss, psir->omss, sizeof (psir->omss));
+    strncpy (psir->mmss, psir->omss, sizeof (psir->mmss));
+    //strncpy (psir->mmss, psir->omss, sizeof (psir->omss));
   }
 
   /* Check output string field for archiving changes */
@@ -503,7 +507,8 @@ static void monitor( sirRecord *psir )
   if (strncmp (psir->amss, psir->omss, sizeof(psir->omss)))
   {
     monitor_mask |= DBE_LOG;
-    strncpy (psir->amss, psir->omss, sizeof (psir->omss));
+    strncpy (psir->amss, psir->omss, sizeof (psir->amss));
+   // memcpy(psir->amss, psir->omss, sizeof (psir->omss));
   }
 
   if(monitor_mask)

@@ -216,13 +216,17 @@ static long get_value( statusRecord *pstatus, struct valueDes *pvdes )
 }
 #endif
 
+/*
+  // TODO. Analyze
+    //strncpy(units,pstatus->egu,sizeof(pstatus->egu)); // warning: argument to ‘sizeof’ in ‘strncpy’ call is the same expression as the source; did you mean to use the size of the destination
+*/
+
 static long get_units(paddr,units)
     struct dbAddr *paddr;
     char	  *units;
 {
     statusRecord *pstatus = (statusRecord *)paddr->precord;
-
-    strncpy(units,pstatus->egu,sizeof(pstatus->egu));
+    strncpy(units,pstatus->egu, MAX_STRING_SIZE); // warning: argument to ‘sizeof’ in ‘strncpy’ call is the same expression as the source; did you mean to use the size of the destination
     return(0);
 }
 
