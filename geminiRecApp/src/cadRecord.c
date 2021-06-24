@@ -123,6 +123,11 @@ static int sizeofTypes[] = {0, 1, 1, 2, 2, 4, 4, 4, 8, 2};
 static char *printDir( int dir );
 #endif
 
+const char *strMARK = "MARK";
+const char *strCLEAR = "CLEAR";
+const char *strPRESET = "PRESET";
+const char *strSTART = "START";
+const char *strSTOP = "STOP";
 
 static long init_record( cadRecord *pcad, int pass )
 {
@@ -576,27 +581,27 @@ static long get_enum_str( struct dbAddr *paddr, char *pstring )
 
   if( pcad->dir == menuDirectiveMARK)
   {
-    strncpy(pstring,"MARK",4);
+    strncpy(pstring, strMARK,4);
     pstring[4] = 0;
   }
   else if( pcad->dir == menuDirectiveCLEAR)
   {
-    strncpy(pstring,"CLEAR",5);
+    strncpy(pstring, strCLEAR,5);
     pstring[5] = 0;
   }
   else if( pcad->dir == menuDirectivePRESET )
   {
-    strncpy(pstring,"PRESET",6);
+    strncpy(pstring,strPRESET,6);
     pstring[6] = 0;
   }
   else if( pcad->dir == menuDirectiveSTART )
   {
-    strncpy(pstring,"START",5);
+    strncpy(pstring,strSTART,5);
     pstring[5] = 0;
   }
   else if( pcad->dir == menuDirectiveSTOP )
   {
-    strncpy(pstring,"STOP",4);
+    strncpy(pstring,strSTOP,4);
     pstring[4] = 0;
   }
   else
@@ -610,11 +615,11 @@ static long get_enum_strs( struct dbAddr *paddr, struct dbr_enumStrs *pes )
 {
   pes->no_str = 5;
   memset(pes->strs,'\0',sizeof(pes->strs));
-  strncpy(pes->strs[0],"MARK",4);
-  strncpy(pes->strs[1],"CLEAR",5);
-  strncpy(pes->strs[2],"PRESET",6);
-  strncpy(pes->strs[3],"START",5);
-  strncpy(pes->strs[4],"STOP",4);
+  strncpy(pes->strs[0],strMARK,4);
+  strncpy(pes->strs[1],strCLEAR,5);
+  strncpy(pes->strs[2],strPRESET,6);
+  strncpy(pes->strs[3],strSTART,5);
+  strncpy(pes->strs[4],strSTOP,4);
   return(0);
 }
 

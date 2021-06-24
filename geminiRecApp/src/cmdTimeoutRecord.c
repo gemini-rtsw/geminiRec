@@ -241,7 +241,14 @@ static long process( cmdTimeoutRecord *pcto )
       setCARMessVal(pcto, " ", menuCarstatesBUSY);
       if( !dbIsLinkConnected(&pcto->odir) )
       {
-        sprintf(buf, "(%s) not connected", pcto->name);
+       //  sprintf(buf, "(%s) not connected", pcto->name); // Original line
+        strcat(buf, pcto->name);
+        strcat(buf, " not connected");
+        /* A posible solution to change the tow previous sentences. 
+           memcpy(buf, pcto->name, MAX_STRING_SIZE);
+           strcat(buf, " not connected");
+        */
+        
         setCARMessVal(pcto, buf, menuCarstatesERROR);
         endProcessing(pcto);
       }
@@ -509,8 +516,9 @@ void setCARMessVal( cmdTimeoutRecord *pcto, char *errMsg, long val )
 {
   //long status;
   long nRequest = 1;
-
-  strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
+  // TODO. VERIFIY  . strncpy source argument is the same as destination [-Wrestrict]
+  if (pcto->mess != errMsg)
+    strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
   pcto->val = val;
   //status    = dbPutLink( &pcto->omss, DBR_STRING,  pcto->mess, nRequest );
   //status    = dbPutLink( &pcto->oval, DBR_LONG,   &pcto->val,  nRequest );
