@@ -212,6 +212,7 @@ static long process( cmdTimeoutRecord *pcto )
 {
   long status = 0;
   char buf[MAX_STRING_SIZE];
+  char *ptrC = 0;
 
   pcto->pact = TRUE;
 
@@ -241,13 +242,12 @@ static long process( cmdTimeoutRecord *pcto )
       setCARMessVal(pcto, " ", menuCarstatesBUSY);
       if( !dbIsLinkConnected(&pcto->odir) )
       {
-       //  sprintf(buf, "(%s) not connected", pcto->name); // Original line
-        strcat(buf, pcto->name);
-        strcat(buf, " not connected");
-        /* A posible solution to change the tow previous sentences. 
-           memcpy(buf, pcto->name, MAX_STRING_SIZE);
-           strcat(buf, " not connected");
-        */
+       //  sprintf(buf, "(%s) not connected", pcto->name); //  warning: '%s' directive writing up to 60 bytes into a region of size 39
+        ptrC = memccpy (buf, pcto->name, '\0', MAX_STRING_SIZE);
+        if (ptrC == NULL)
+            buf[MAX_STRING_SIZE-1] = '\0'; // The buffer is overflow
+        else if ( (ptrC-buf) + 14 <= MAX_STRING_SIZE) // 14 is the size of ' not connected'
+            memccpy (--ptrC, " not connected",'\0', 14);
         
         setCARMessVal(pcto, buf, menuCarstatesERROR);
         endProcessing(pcto);
