@@ -182,6 +182,7 @@ static long init_record( applyRecord *papply, int pass )
 
   if(pass == 0)
   {
+    printf("allocating memory. Record name: %s \n", papply->name);
     papply->vers = VERSION;
 
     for( i=0; i<ARG_MAX; i++ )

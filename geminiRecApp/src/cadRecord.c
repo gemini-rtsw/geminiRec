@@ -72,15 +72,15 @@ typedef long (*SUBFUNCPTR)(cadRecord *);
 
 /* Create RSET - Record Support Entry Table*/
 
-static long init_record();
-static long process();
+static long init_record(struct dbCommon *, int);
+static long process( struct dbCommon *);
 //static long get_value();
-static long get_precision();
-static long get_enum_str();
-static long get_enum_strs();
-static long put_enum_str();
-static long cvt_dbaddr();
-static long special();
+static long get_precision( const DBADDR *, long *);
+static long get_enum_str(const DBADDR *, char *);
+static long get_enum_strs(const DBADDR *, struct dbr_enumStrs *);
+static long put_enum_str(const DBADDR *, const char *);
+static long cvt_dbaddr(DBADDR *);
+static long special(DBADDR *, int);
 #define report             NULL
 #define initialize         NULL
 #define get_units          NULL
@@ -116,9 +116,6 @@ static long do_sub();
 
 #define ARG_MAX 20
 
-/* Sizes of field types */
-static int sizeofTypes[] = {0, 1, 1, 2, 2, 4, 4, 4, 8, 2};
-
 #if DEBUG
 static char *printDir( int dir );
 #endif
@@ -129,7 +126,7 @@ const char *strPRESET = "PRESET";
 const char *strSTART = "START";
 const char *strSTOP = "STOP";
 
-static long init_record( cadRecord *pcad, int pass )
+static long init_record( struct dbCommon *pcommon, int pass)
 {
   SUBFUNCPTR     psubroutine;
   SUBFUNCPTR     subAddr;
@@ -141,14 +138,16 @@ static long init_record( cadRecord *pcad, int pass )
   int            i;
 
   status = 0;
+  struct cadRecord *pcad= (struct cadRecord *) pcommon;
   if( pass == 0 )
   {
+    printf("allocating memory. Record name: %s \n", pcommon->name);
     pcad->vers = VERSION;
 
     /* Is this CAD record a 2-state or 3-state machine?
        This replaces the need for a "subCad" record.
      */
-
+    printf("allocating memory. Record name: %s \n", pcommon->name);
     if( pcad->mflg == cadMFLG_THREE_STATES )
       pcad->base = 0;
     else
@@ -261,7 +260,7 @@ static long init_record( cadRecord *pcad, int pass )
 }
 
 
-static long process( cadRecord *pcad )
+static long process( struct dbCommon *pcommon )
 {
   long           status;
   long           error;
@@ -273,6 +272,8 @@ static long process( cadRecord *pcad )
   long           options;
   unsigned short *typptr;
 
+
+  struct cadRecord *pcad = (struct cadRecord *) pcommon;
   pcad->pact = TRUE;
 
 #if DEBUG
@@ -575,7 +576,7 @@ static void monitor( cadRecord *pcad, int reset )
 }
 
 
-static long get_enum_str( struct dbAddr *paddr, char *pstring )
+static long get_enum_str( const DBADDR *paddr, char *pstring)
 {
   cadRecord *pcad = (cadRecord *)paddr->precord;
 
@@ -611,7 +612,7 @@ static long get_enum_str( struct dbAddr *paddr, char *pstring )
 }
 
 
-static long get_enum_strs( struct dbAddr *paddr, struct dbr_enumStrs *pes )
+static long get_enum_strs( const DBADDR *paddr, struct dbr_enumStrs *pes )
 {
   pes->no_str = 5;
   memset(pes->strs,'\0',sizeof(pes->strs));
@@ -624,7 +625,7 @@ static long get_enum_strs( struct dbAddr *paddr, struct dbr_enumStrs *pes )
 }
 
 
-static long put_enum_str( struct dbAddr *paddr, char *pstring )
+static long put_enum_str( const DBADDR *paddr, const char *pstring )
 {
   cadRecord *pcad = (cadRecord *)paddr->precord;
 
@@ -644,11 +645,11 @@ static long put_enum_str( struct dbAddr *paddr, char *pstring )
 }
 
 
-static long get_precision( struct dbAddr *paddr, long *pprecision )
+static long get_precision(const DBADDR *paddr, long *pprecision )
 {
-  cadRecord *pcad = (cadRecord *)paddr->precord;
   int       fieldIndex;
-
+  
+  cadRecord *pcad = (cadRecord *)paddr->precord;
   fieldIndex = dbGetFieldIndex(paddr);
   if( fieldIndex == cadRecordVERS )
   {
@@ -699,7 +700,7 @@ static long do_sub( cadRecord *pcad )
 }
 
 
-static long cvt_dbaddr( struct dbAddr *paddr )
+static long cvt_dbaddr( DBADDR *paddr )
 {
   long      error;
   int       fieldIndex;
@@ -923,7 +924,7 @@ static long cvt_dbaddr( struct dbAddr *paddr )
     if( paddr->field_type == DBF_STRING )
       paddr->field_size = MAX_STRING_SIZE;
     else
-      paddr->field_size = sizeofTypes[paddr->field_type];
+      paddr->field_size = dbValueSize(paddr->field_type);
   }
   return(error);
 }

@@ -517,8 +517,9 @@ void setCARMessVal( cmdTimeoutRecord *pcto, char *errMsg, long val )
   //long status;
   long nRequest = 1;
   // TODO. VERIFIY  . strncpy source argument is the same as destination [-Wrestrict]
-  if (pcto->mess != errMsg)
-    strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
+  //if (pcto->mess != errMsg)
+  //  strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
+  strncpy(pcto->mess, errMsg, MAX_STRING_SIZE);
   pcto->val = val;
   //status    = dbPutLink( &pcto->omss, DBR_STRING,  pcto->mess, nRequest );
   //status    = dbPutLink( &pcto->oval, DBR_LONG,   &pcto->val,  nRequest );

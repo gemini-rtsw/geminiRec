@@ -144,6 +144,7 @@ static long init_record( statusRecord *pstatus, int pass )
     if( pass==0 )
     {
       pstatus->vers = VERSION;
+      printf("allocating memory. Record name: %s \n", pstatus->name);
       return(0);
     }
 

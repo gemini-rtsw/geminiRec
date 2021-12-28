@@ -73,14 +73,14 @@ typedef long (*SUBFUNCPTR)(genSubRecord *);
 
 /* Create RSET - Record Support Entry Table*/
 
-static long init_record();
-static long process();
+static long init_record(struct dbCommon *, int);
+static long process( struct dbCommon * );
 //static long get_value();
-static long get_precision();
-static long cvt_dbaddr();
-static long get_array_info();
-static long put_array_info();
-static long special();
+static long get_precision(const DBADDR *, long * );
+static long cvt_dbaddr(DBADDR *);
+static long get_array_info(DBADDR *, long *, long  *);
+static long put_array_info(DBADDR *, long);
+static long special( DBADDR *, int);
 #define report             NULL
 #define initialize         NULL
 #define get_units          NULL
@@ -114,7 +114,7 @@ epicsExportAddress(rset,genSubRSET);
 
 static void monitor( genSubRecord *, int );
 static long do_sub( genSubRecord * );
-static long findField( int, struct dbAddr *, long *, long );
+static long findField( int, DBADDR *, long *, long );
 
 #define ARG_MAX        21
 #define MAX_ARRAY_SIZE 10000000
@@ -140,7 +140,7 @@ static int sizeofTypes[] = {0, 1, 1, 2, 2, 4, 4, 4, 8, 2};
 int CHECKgensubLINKS = 0;
 
 
-static long init_record( genSubRecord *pgsub, int pass )
+static long init_record(struct dbCommon *pcommon, int pass)
 {
   SUBFUNCPTR     psubroutine;
   SUBFUNCPTR     sub_addr;
@@ -160,6 +160,7 @@ static long init_record( genSubRecord *pgsub, int pass )
   char           fldnames[ARG_MAX][FLDNAME_SZ+1];
 
   status = 0;
+  genSubRecord *pgsub = (struct genSubRecord *) pcommon;  
   if( pass == 0 )
   {
     pgsub->vers = VERSION;
@@ -258,9 +259,11 @@ static long init_record( genSubRecord *pgsub, int pass )
               *typptr = 2;
 
 #if DEBUG
-            printf("Number of elements = %ld, Index into sizeofTypes = %d, sizeofTypes = %d\n", *nelptr, *typptr, sizeofTypes[*typptr]);
+            //printf("Number of elements = %ld, Index into sizeofTypes = %d, sizeofTypes = %d\n", *nelptr, *typptr, sizeofTypes[*typptr]);
+            printf("Number of elements = %ld, Index into sizeofTypes = %d, sizeofTypes = %d\n", *nelptr, *typptr,dbValueSize(*typptr));
 #endif
-            num = (*nelptr)*sizeofTypes[*typptr];
+            //num = (*nelptr)*sizeofTypes[*typptr];
+            num = (*nelptr)*dbValueSize(*typptr);
 #if DEBUG
             printf("num = %ld\n", num);
 #endif
@@ -272,9 +275,9 @@ static long init_record( genSubRecord *pgsub, int pass )
             }
             else
             {
-              *valptr   = (char *)calloc( *nelptr, sizeofTypes[*typptr] );
+              *valptr   = (char *)calloc( *nelptr, dbValueSize(*typptr));
               if( j == 1 )
-                *ovlptr = (char *)calloc( *nelptr, sizeofTypes[*typptr] );
+                *ovlptr = (char *)calloc( *nelptr, dbValueSize(*typptr) );
               *totptr = num;
 #if DEBUG
               printf("Link(%s): Address = 0x%x, Bytes = %d\n", fldnames[i], (unsigned int)(*valptr), *totptr);
@@ -463,7 +466,7 @@ static long init_record( genSubRecord *pgsub, int pass )
 }
 
 
-static long process( genSubRecord *pgsub )
+static long process( struct dbCommon *pcommon )
 {
   int            i;
   int            j;
@@ -478,6 +481,7 @@ static long process( genSubRecord *pgsub )
   long           options;
   void           **valptr;
 
+  struct genSubRecord *pgsub = (struct genSubRecord *) pcommon;   
   pgsub->pact = TRUE;
   status      = 0;
 
@@ -589,7 +593,7 @@ static long process( genSubRecord *pgsub )
 }
 
 
-static long get_precision( struct dbAddr *paddr, long *precision )
+static long get_precision( const DBADDR *paddr, long *precision )
 {
     genSubRecord *pgsub;
     int          fieldIndex;
@@ -728,7 +732,7 @@ static long do_sub( genSubRecord *pgsub )
 }
 
 
-static long cvt_dbaddr( struct dbAddr *paddr )
+static long cvt_dbaddr( DBADDR *paddr )
 {
   int  error;
   int  flag;
@@ -748,7 +752,7 @@ static long cvt_dbaddr( struct dbAddr *paddr )
 }
 
 
-static long get_array_info( struct dbAddr *paddr, long *no_elements, long *offset )
+static long get_array_info( DBADDR *paddr, long *no_elements, long *offset )
 {
   int  error;
   int  flag;
@@ -767,7 +771,7 @@ static long get_array_info( struct dbAddr *paddr, long *no_elements, long *offse
 }
 
 
-static long put_array_info( struct dbAddr *paddr, long nNew )
+static long put_array_info( DBADDR *paddr, long nNew )
 {
   int  error;
   int  flag;
@@ -784,7 +788,7 @@ static long put_array_info( struct dbAddr *paddr, long nNew )
 }
 
 
-static long special( struct dbAddr *paddr, int after )
+static long special( DBADDR *paddr, int after )
 {
   genSubRecord *pgsub;
   SUBFUNCPTR    sub_addr;
@@ -817,7 +821,7 @@ static long special( struct dbAddr *paddr, int after )
 }
 
 
-static long findField( int flag, struct dbAddr *paddr, long *no_elements, long nNew )
+static long findField( int flag, DBADDR *paddr, long *no_elements, long nNew )
 {
   long         error;
   int          fieldIndex;
@@ -1385,7 +1389,7 @@ static long findField( int flag, struct dbAddr *paddr, long *no_elements, long n
     if( paddr->field_type == DBF_STRING )
       paddr->field_size = MAX_STRING_SIZE;
     else
-      paddr->field_size = sizeofTypes[paddr->field_type];
+      paddr->field_size = dbValueSize(paddr->field_type);
   }
 
   return(error);

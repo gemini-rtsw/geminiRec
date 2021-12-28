@@ -56,13 +56,13 @@
 
 /* Create RSET - Record Support Entry Table*/
 
-static long init_record();
-static long process();
+static long init_record(struct dbCommon *, int);
+static long process(struct dbCommon *);
 //static long get_value();
-static long get_enum_str();
-static long get_enum_strs();
-static long put_enum_str();
-static long get_precision();
+static long get_enum_str(const DBADDR *, char *);
+static long get_enum_strs(const DBADDR *, struct dbr_enumStrs *);
+static long put_enum_str( const DBADDR *, const char *);
+static long get_precision(const DBADDR *, long *);
 #define report             NULL
 #define initialize         NULL
 #define special            NULL
@@ -168,16 +168,18 @@ static void car_state_machine( carRecord *pcar, int in )
 }
 
 
-static long init_record( carRecord *pcar, int pass )
+static long init_record(  struct dbCommon *pcommon, int pass )
 {
   long status;
 
+  carRecord *pcar = (struct carRecord *) pcommon;
   status = 0;
   if( pass == 1 )
-  {
+  { 
+    printf("allocating memory. Record name: %s \n", pcommon->name);
     pcar->udf  = TRUE;
     pcar->vers = VERSION;
-
+    
     if( pcar->siml.type == CONSTANT )
       recGblInitConstantLink(&pcar->siml, DBF_ENUM, &pcar->simm);
   
@@ -197,12 +199,13 @@ static long init_record( carRecord *pcar, int pass )
 }
 
 
-static long process( carRecord *pcar )
+static long process(  struct dbCommon *pcommon )
 {
   long status;
   long nRequest;
   long options;
 
+  carRecord *pcar = (struct carRecord *) pcommon;
 #if DEBUG
   switch( pcar->ival )
   {
@@ -346,7 +349,7 @@ static void monitor( carRecord *pcar )
 }
 
 
-static long get_enum_str( struct dbAddr *paddr, char *pstring )
+static long get_enum_str( const DBADDR *paddr, char *pstring )
 {
   carRecord *pcar = (carRecord *) paddr->precord;
 
@@ -365,7 +368,7 @@ static long get_enum_str( struct dbAddr *paddr, char *pstring )
 }
 
 
-static long get_enum_strs( struct dbAddr *paddr, struct dbr_enumStrs *pes )
+static long get_enum_strs( const DBADDR *paddr, struct dbr_enumStrs *pes )
 {
   pes->no_str = 4;
   memset (pes->strs,'\0', sizeof(pes->strs));
@@ -377,7 +380,7 @@ static long get_enum_strs( struct dbAddr *paddr, struct dbr_enumStrs *pes )
 }
 
 
-static long put_enum_str( struct dbAddr *paddr, char *pstring )
+static long put_enum_str( const DBADDR *paddr, const char *pstring )
 {
   carRecord *pcar = (carRecord *)paddr->precord;
  
@@ -396,7 +399,7 @@ static long put_enum_str( struct dbAddr *paddr, char *pstring )
 }
 
 
-static long get_precision( struct dbAddr *paddr, long *pprecision )
+static long get_precision( const DBADDR *paddr, long *pprecision )
 {
   *pprecision = 1;
   return(0);

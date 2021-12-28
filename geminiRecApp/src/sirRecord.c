@@ -64,18 +64,14 @@
 typedef long (*SUBFUNCPTR)(sirRecord *);
 
 /* Create RSET - Record Support Entry Table*/
-//static long process (sirRecord *);
-static long process ();
-//static long get_value (sirRecord *, struct valueDes *);
-static long get_units (struct dbAddr *, char *);
-//static long init_record (sirRecord *, int);
-static long init_record ();
-static long cvt_dbaddr (struct dbAddr *);
-//static long get_precision (struct dbAddr *, long *);
-static long get_precision ();
+static long init_record (struct dbCommon *, int);
+static long process (struct dbCommon *);
+static long cvt_dbaddr (DBADDR *);
 static long get_alarm_double (struct dbAddr *, struct dbr_alDouble *);
-static long get_array_info (struct dbAddr *, long *, long *);
-static long put_array_info (struct dbAddr *, long);
+static long get_array_info (DBADDR *, long *, long *);
+static long put_array_info (DBADDR *, long);
+static long get_units (DBADDR *, char *);
+static long get_precision (const DBADDR *, long *);
 #define report              NULL
 #define initialize          NULL
 #define special             NULL
@@ -84,6 +80,7 @@ static long put_array_info (struct dbAddr *, long);
 #define put_enum_str        NULL
 #define get_graphic_double  NULL
 #define get_control_double  NULL
+#define get_value           NULL
 
 rset sirRSET = {
   RSETNUMBER,
@@ -107,39 +104,33 @@ rset sirRSET = {
 };
 epicsExportAddress(rset, sirRSET);
 
-static long findField( int, struct dbAddr *, long *, long );
-
-static int sizeofTypes[] =
-{
-  MAX_STRING_SIZE, 1, 1, 2, 2, 4, 4, 4, 8, 2
-};
-
+static long findField( int, DBADDR *, long *, long );
 static void monitor (sirRecord *);
 static void checkAlarms (sirRecord *);
 
-
-static long init_record( sirRecord *psir, int pass )
+static long init_record( struct dbCommon *pcommon, int pass )
 {
   long       status;
   SUBFUNCPTR subAddr;
-
+  
+  struct sirRecord *psir= (struct sirRecord *) pcommon;
   status = 0;
   if (pass == 0)
   {
     psir->vers = VERSION;
-					/* reset array sizes */
+    printf("allocating memory. Record name: %s \n", pcommon->name);
+    /* reset array sizes */
     if (psir->nelm <= 0)
-      psir->nelm = 1;
+       psir->nelm = 1;
     psir->nord = 0;
-					/* allocate space for results */
+    /* allocate space for results */
     if( psir->ftvl <= DBF_ENUM )
     {
-      psir->val  = (char *) calloc (psir->nelm, sizeofTypes[psir->ftvl]);
-      psir->rval = (char *) calloc (psir->nelm, sizeofTypes[psir->ftvl]);
-      psir->sval = (char *) calloc (psir->nelm, sizeofTypes[psir->ftvl]);
-      psir->mval = (char *) calloc (psir->nelm, sizeofTypes[psir->ftvl]);
-      psir->aval = (char *) calloc (psir->nelm, sizeofTypes[psir->ftvl]);
-      status = 0;
+      psir->val  = callocMustSucceed(psir->nelm, dbValueSize(psir->ftvl), "sir::init_record-val");
+      psir->rval = callocMustSucceed(psir->nelm, dbValueSize(psir->ftvl), "sir::init_record-rval");
+      psir->sval = callocMustSucceed(psir->nelm, dbValueSize(psir->ftvl), "sir::init_record-sval");
+      psir->mval = callocMustSucceed(psir->nelm, dbValueSize(psir->ftvl), "sir::init_record-mval");
+      psir->aval = callocMustSucceed(psir->nelm, dbValueSize(psir->ftvl), "sir::init_record-aval");
     }
     else
     {
@@ -155,10 +146,10 @@ static long init_record( sirRecord *psir, int pass )
   if( (psir->siol.type == CONSTANT) && (psir->nelm < 2) )
   {
     recGblInitConstantLink(&psir->siol, psir->ftvl, &psir->sval);
-    if( (psir->ftvl == DBF_STRING) && (!strncmp(psir->sval, "0.0", 3)) )
-      strcpy(psir->sval, " ");
+    if( (psir->ftvl == DBF_STRING) && (!strncmp(psir->sval, "0.0", 3)) ) 
+      strncpy(psir->sval, " ", MAX_STRING_SIZE);
   }
-					/* Find the subroutine */
+  /* Find the subroutine */
   if (psir->snam[0] != '\0')
   {
     subAddr = (SUBFUNCPTR)registryFunctionFind(psir->snam);
@@ -173,7 +164,7 @@ static long init_record( sirRecord *psir, int pass )
 
   if( (psir->inp.type == CONSTANT) && (psir->nelm < 2) )
   {
-    if( !recGblInitConstantLink(&psir->inp, psir->ftvl, psir->val) )
+    if( !recGblInitConstantLink(&psir->inp, psir->ftvl, psir->val ))
     {
       recGblRecordError(S_db_badChoice, (void *) psir, "sirRecord: CONSTANT INP");
       status = S_db_badChoice;
@@ -181,23 +172,22 @@ static long init_record( sirRecord *psir, int pass )
     else
     {
       if( (psir->ftvl == DBF_STRING) && (!strncmp(psir->val, "0.0", 3)) )
-        strcpy(psir->val, " ");
-      status = 0;
+        strncpy(psir->val, " ", MAX_STRING_SIZE);
     }
   }
-
   psir->udf = FALSE;
   return status;
 }
 
 
-static long process( sirRecord *psir )
+static long process( struct dbCommon *pcommon)
 {
   SUBFUNCPTR psubroutine;
   long       status;
   long       nReq;
   long       opt;
 
+  struct sirRecord *psir = (struct sirRecord *)pcommon;
   psir->pact = TRUE;
 
   if( psir->siml.type != CONSTANT )
@@ -228,7 +218,7 @@ static long process( sirRecord *psir )
 
     /* copy sim value into raw val */
     nReq = psir->nelm;
-    memcpy( psir->rval, psir->sval, nReq*sizeofTypes[psir->ftvl]);
+    memcpy( psir->rval, psir->sval, nReq* dbValueSize(psir->ftvl));
     recGblSetSevr(psir, SIMM_ALARM, psir->sims);
   }
   else					/* not simulation */
@@ -248,7 +238,7 @@ static long process( sirRecord *psir )
     {
       /* copy val into raw val */
       nReq = psir->nelm;
-      memcpy( psir->rval, psir->val, nReq*sizeofTypes[psir->ftvl]);
+      memcpy( psir->rval, psir->val, nReq* dbValueSize((psir->ftvl)));
     }
   }
   psir->nord = nReq;
@@ -259,7 +249,7 @@ static long process( sirRecord *psir )
    */
 
   nReq = psir->nelm;
-  memcpy( psir->val, psir->rval, nReq*sizeofTypes[psir->ftvl] );
+  memcpy( psir->val, psir->rval, nReq* dbValueSize(psir->ftvl) );
 
 					/* do subroutine */
   /* psubroutine = (SUBFUNCPTR)((void *)psir->sadr); */
@@ -274,7 +264,7 @@ static long process( sirRecord *psir )
     }
   }
 
-  strcpy(psir->omss, psir->imss);
+  strncpy(psir->omss, psir->imss, MAX_STRING_SIZE);
 					/* general record processing */
   recGblGetTimeStamp (psir);
   checkAlarms (psir);			/* Check for Alarms */
@@ -285,17 +275,7 @@ static long process( sirRecord *psir )
   return 0;
 }
 
-#if 0
-static long get_value( sirRecord *psir, struct valueDes *pvdes )
-{
-  pvdes->no_elements = psir->nelm;
-  pvdes->pvalue      = psir->val;
-  pvdes->field_type  = psir->ftvl;
-  return 0;
-}
-#endif
-
-static long cvt_dbaddr( struct dbAddr *paddr )
+static long cvt_dbaddr( DBADDR *paddr )
 {
   int  error;
   int  flag;
@@ -311,12 +291,11 @@ static long cvt_dbaddr( struct dbAddr *paddr )
   error = findField( flag, paddr, &no_elements, nNew );
   if( error )
     printf("cvt_dbaddr: Could not find field\n");
- 
   return(0);
 }
 
 
-static long findField( int flag, struct dbAddr *paddr, long *no_elements, long nNew )
+static long findField( int flag, DBADDR *paddr, long *no_elements, long nNew )
 {
   long      error;
   int       fieldIndex;
@@ -356,29 +335,28 @@ static long findField( int flag, struct dbAddr *paddr, long *no_elements, long n
       paddr->dbr_field_type = paddr->field_type;
       if( paddr->field_type == DBF_STRING )
         paddr->field_size = MAX_STRING_SIZE;
-      else
-        paddr->field_size = sizeofTypes[paddr->field_type];
+      else {
+        paddr->field_size = dbValueSize(paddr->field_type);
+      }
     }
     else if( flag == 2 )
       *no_elements = psir->nelm;
     else if( flag == 3 )
       psir->nelm = nNew;
   }
- 
   return(error);
 }
 
 
-static long get_units( struct dbAddr *paddr, char *punits )
+static long get_units( DBADDR *paddr, char *punits )
 {
   sirRecord *psir = (sirRecord *) paddr->precord;
- //strncpy (punits, psir->egu, sizeof (psir->egu));
   strncpy (punits, psir->egu, MAX_STRING_SIZE);
   return 0;
 }
 
 
-static long get_precision( struct dbAddr *paddr, long *precision )
+static long get_precision( const DBADDR *paddr, long *precision )
 {
   sirRecord *psir = (sirRecord *) paddr->precord;
   int       fieldIndex;
@@ -426,16 +404,16 @@ static void monitor( sirRecord *psir )
 
   if( psir->ftvl == DBF_STRING )
   {
-    if( memcmp(psir->mval, psir->val, psir->nelm*sizeofTypes[psir->ftvl]) )
+    if( memcmp(psir->mval, psir->val, psir->nelm* dbValueSize(psir->ftvl)) )
     {
       monitor_mask |= DBE_VALUE;
-      memcpy(psir->mval, psir->val, psir->nelm*sizeofTypes[psir->ftvl]);
+      memcpy(psir->mval, psir->val, psir->nelm* dbValueSize(psir->ftvl));
     }
 
-    if( memcmp(psir->aval, psir->val, psir->nelm*sizeofTypes[psir->ftvl]) )
+    if( memcmp(psir->aval, psir->val, psir->nelm*dbValueSize(psir->ftvl)) )
     {
       monitor_mask |= DBE_LOG;
-      memcpy(psir->aval, psir->val, psir->nelm*sizeofTypes[psir->ftvl]);
+      memcpy(psir->aval, psir->val, psir->nelm* dbValueSize(psir->ftvl));
     }
   }
   else if( psir->ftvl == DBF_DOUBLE || psir->ftvl == DBF_LONG )
@@ -498,8 +476,7 @@ static void monitor( sirRecord *psir )
   if (strncmp (psir->mmss, psir->omss, sizeof (psir->omss)))
   {
     monitor_mask |= DBE_VALUE;
-    strncpy (psir->mmss, psir->omss, sizeof (psir->mmss));
-    //strncpy (psir->mmss, psir->omss, sizeof (psir->omss));
+    strncpy (psir->mmss, psir->omss, MAX_STRING_SIZE);
   }
 
   /* Check output string field for archiving changes */
@@ -507,8 +484,7 @@ static void monitor( sirRecord *psir )
   if (strncmp (psir->amss, psir->omss, sizeof(psir->omss)))
   {
     monitor_mask |= DBE_LOG;
-    strncpy (psir->amss, psir->omss, sizeof (psir->amss));
-   // memcpy(psir->amss, psir->omss, sizeof (psir->omss));
+    strncpy (psir->amss, psir->omss, MAX_STRING_SIZE);
   }
 
   if(monitor_mask)
@@ -520,9 +496,7 @@ static void monitor( sirRecord *psir )
 
 /*******************************************************************************
 */
-static long get_alarm_double (
-  struct dbAddr *paddr,
-  struct dbr_alDouble *pad)
+static long get_alarm_double ( struct dbAddr *paddr, struct dbr_alDouble *pad)
 {
   sirRecord *psir = (sirRecord *) paddr->precord;
 
@@ -630,15 +604,12 @@ static void checkAlarms( sirRecord *psir )
 }
 
 
-static long put_array_info( struct dbAddr *paddr, long nNew )
+static long put_array_info( DBADDR *paddr, long nNew )
 {
   int  error;
   int  flag;
   long no_elements;
  
-#if DEBUG
-  printf("Calling put_array_info...\n");
-#endif   
   flag  = 3;
   error = findField( flag, paddr, &no_elements, nNew );
   if( error )
@@ -647,7 +618,7 @@ static long put_array_info( struct dbAddr *paddr, long nNew )
 }
 
 
-static long get_array_info( struct dbAddr *paddr, long *no_elements, long *offset )
+static long get_array_info( DBADDR *paddr, long *no_elements, long *offset )
 {
   int  error;
   int  flag;
