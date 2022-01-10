@@ -176,7 +176,6 @@ static long init_record(  struct dbCommon *pcommon, int pass )
   status = 0;
   if( pass == 1 )
   { 
-    printf("allocating memory. Record name: %s \n", pcommon->name);
     pcar->udf  = TRUE;
     pcar->vers = VERSION;
     

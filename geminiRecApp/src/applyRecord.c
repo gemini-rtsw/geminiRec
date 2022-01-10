@@ -51,7 +51,7 @@
 
 #define DEBUG   0
 #define DEBUG1  0
-#define DEBUG2  0
+#define DEBUG2  0 
 #define VERSION 4.0
 
 #include	<stdlib.h>
@@ -80,14 +80,14 @@
 
 /* Create RSET - Record Support Entry Table*/
 
-static long init_record();
-static long process();
+static long init_record(struct dbCommon *, int);
+static long process(struct dbCommon *);
 //static long get_value();
-static long get_enum_str();
-static long get_enum_strs();
-static long put_enum_str();
-static long get_precision();
-static long special();
+static long get_enum_str(const DBADDR *, char *);
+static long get_enum_strs(const DBADDR *, struct dbr_enumStrs *);
+static long put_enum_str(const DBADDR *, const char *);
+static long get_precision(const DBADDR *, long *);
+static long special(DBADDR *, int);
 #define report             NULL
 #define initialize         NULL
 #define cvt_dbaddr         NULL
@@ -171,18 +171,16 @@ static void applyCallback( CALLBACK *arg )
 * init_record
 */
 
-static long init_record( applyRecord *papply, int pass )
+static long init_record(struct dbCommon *pcommon,int pass )
 {
   myCallback *pcallback;
   long status = 0;
   int i;
 
-
-  printf("Apply init %p: \n", (void*)papply);
+  applyRecord *papply = (struct applyRecord *) pcommon;
 
   if(pass == 0)
   {
-    printf("allocating memory. Record name: %s \n", papply->name);
     papply->vers = VERSION;
 
     for( i=0; i<ARG_MAX; i++ )
@@ -202,44 +200,46 @@ static long init_record( applyRecord *papply, int pass )
         (&papply->inma+i)->value.pv_link.pvlMask = 0x0;
     }
 
-    papply->udf  = FALSE;
-    papply->stte = menuApplyStateOUT;
-    papply->lpro = 1;
-    papply->top  = 1;
-    papply->stfg = 0;
+    papply->udf  = FALSE;              // Undefined value
+    papply->stte = menuApplyStateOUT;  // State
+    papply->lpro = 1;                  // Link processing
+    papply->top  = 1;                  // Top of tree
+    papply->stfg = 0;                  // Start Flag
 
-    if( papply->tout <= 0.0 )
+    if( papply->tout <= 0.0 )          // tout: timeout in seconds
       papply->tout = DEFAULT_TIMEOUT;
 
     pcallback          = (myCallback *)(calloc(1,sizeof(myCallback)));
-    pcallback->precord = (struct dbCommon *)papply;
     papply->rpvt       = (void *)pcallback;
     callbackSetCallback(applyCallback,&pcallback->callback);
     callbackSetUser(pcallback,&pcallback->callback);
+    pcallback->precord = (struct dbCommon *)papply;
   }
   return status;
 }
 
 
-static long process( applyRecord *papply )
+static long process( struct dbCommon *pcommon  )
 {
   myCallback *pcallback;
   long status = 0;
   int  i;
+  applyRecord *papply = (struct applyRecord *) pcommon;
 
+  
   papply->pact = TRUE;
 
 #if DEBUG1
-  printf("\n");
+  printf("START: %s process  \n", papply->name);
 #endif
   switch( papply->stte )
   {
     case menuApplyStateOUT:
       if( papply->lpro )
       {
-#if DEBUG1
+#if DEBUG2 
         printf("%s: OUT with link processing - Do nothing\n", papply->name);
-#endif
+#endif 
         papply->pact = FALSE;
         return status;
       }
@@ -251,8 +251,9 @@ static long process( applyRecord *papply )
 
       for(i=0; i<ARG_MAX; i++)
       {
-        if( dbIsLinkConnected(&papply->inpa + i) )
+        if( (!dbLinkIsConstant(&papply->inpa + i)) &&  dbIsLinkConnected(&papply->inpa + i) ) {
           papply->nprc++;
+	}
       }
       if( !papply->nprc )
       {
@@ -271,7 +272,7 @@ static long process( applyRecord *papply )
         pcallback = (myCallback *)(papply->rpvt);
         callbackSetPriority( papply->prio, &pcallback->callback );
 #if DEBUG1
-        printf("%s: Starting the watchdog timer\n", papply->name);
+        printf("%s: Starting the watchdog timer ", papply->name);
 #endif
         callbackRequestDelayed( &pcallback->callback, papply->tout );
       }
@@ -280,14 +281,14 @@ static long process( applyRecord *papply )
       {
         case menuDirectiveCLEAR:
 #if DEBUG
-          printf("apply record: %s: CLEAR\n", papply->name);
+          printf("%s: CLEAR\n", papply->name);
 #endif
           processLinks(papply);
           break;
 
         case menuDirectiveMARK:
 #if DEBUG
-          printf("apply record: %s: MARK\n", papply->name);
+          printf("%s: MARK\n", papply->name);
 #endif
           endInLinkProc(papply);
           papply->pact = FALSE;
@@ -296,7 +297,7 @@ static long process( applyRecord *papply )
 
         case menuDirectivePRESET:
 #if DEBUG
-          printf("apply record: %s: PRESET\n", papply->name);
+          printf("%s: PRESET\n", papply->name);
 #endif
 #if DEBUG2
           if( !strcmp(papply->name, "tcs:apply")      ||
@@ -319,7 +320,7 @@ static long process( applyRecord *papply )
 
         case menuDirectiveSTART:
 #if DEBUG
-          printf("apply record: %s: START\n", papply->name);
+          printf("%s: START\n", papply->name);
 #endif
           if( (papply->val < 0) || ((papply->mark != menuDirectivePRESET) && !papply->stfg) )
           {
@@ -350,9 +351,9 @@ static long process( applyRecord *papply )
             papply->stfg = 0;
           }
 
-#if DEBUG1
+#if DEBUG1 
           printf("%s: process: START: DIR = %s: CLID = %ld, stfg = %ld\n", papply->name, printDir(papply->dir), papply->clid, papply->stfg);
-#endif
+#endif 
 
           processLinks(papply);
           break;
@@ -379,8 +380,8 @@ static long process( applyRecord *papply )
 #if DEBUG1
         printf("%s: IN with DIR processing - Do nothing\n", papply->name);
 #endif
-        papply->pact = FALSE;
-//        return status;
+      papply->pact = FALSE;   // TODO. Check because the pact should be associated with the record processing
+//      return status;
       }
 
       papply->nprc--;
@@ -428,7 +429,7 @@ static long process( applyRecord *papply )
               !strcmp(papply->name, "tcs:com:apply32") )
             printf("%s: IN - Just done PRESET now call START\n", papply->name);
 #endif
-          process( papply );
+          process( (dbCommon *) papply );
         }
       }
       break;
@@ -455,7 +456,6 @@ static long processLinks( applyRecord *papply )
   switch( papply->stte )
   {
     case menuApplyStateOUT:
-
       /* send CLID and DIR to all output links */
       for(i=0; i<ARG_MAX; i++)
       {
@@ -466,7 +466,6 @@ static long processLinks( applyRecord *papply )
       break;
 
     case menuApplyStateIN:
-
       /* Get the values from the input links */
       for(i=0; i<ARG_MAX; i++)
       {
@@ -492,6 +491,7 @@ static long processLinks( applyRecord *papply )
           break;
         }
       }
+
       break;
 
     default:
@@ -533,7 +533,7 @@ static long get_value( applyRecord *papply, struct valueDes *pvdes )
 */
 
 static long get_enum_str (
-    struct dbAddr *paddr,
+    const DBADDR *paddr,
     char *pstring)
 {
     applyRecord *papply = (applyRecord *) paddr->precord;
@@ -575,7 +575,7 @@ static long get_enum_str (
 */
 
 static long get_enum_strs (
-    struct dbAddr *paddr,
+    const DBADDR *paddr,
     struct dbr_enumStrs *pes)
 {
     pes->no_str = 5;
@@ -595,8 +595,8 @@ static long get_enum_strs (
 */
 
 static long put_enum_str (
-    struct dbAddr *paddr,
-    char *pstring)
+    const DBADDR *paddr,
+    const char *pstring)
 {
     applyRecord *papply = (applyRecord *) paddr->precord;
 
@@ -647,7 +647,7 @@ static void monitor( applyRecord *papply )
 }
 
 
-static long get_precision( struct dbAddr *paddr, long *pprecision )
+static long get_precision( const DBADDR *paddr, long *pprecision )
 {
   *pprecision = 1;
   return 0;
@@ -685,7 +685,6 @@ static long special( struct dbAddr *paddr, int after )
 static void epicsShareAPI callbackRequestCancel(CALLBACK *pcallback)
 {
   epicsTimerId timer = (epicsTimerId)pcallback->timer;
-
   epicsTimerCancel(timer);
 }
 

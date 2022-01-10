@@ -141,13 +141,11 @@ static long init_record( struct dbCommon *pcommon, int pass)
   struct cadRecord *pcad= (struct cadRecord *) pcommon;
   if( pass == 0 )
   {
-    printf("allocating memory. Record name: %s \n", pcommon->name);
     pcad->vers = VERSION;
 
     /* Is this CAD record a 2-state or 3-state machine?
        This replaces the need for a "subCad" record.
      */
-    printf("allocating memory. Record name: %s \n", pcommon->name);
     if( pcad->mflg == cadMFLG_THREE_STATES )
       pcad->base = 0;
     else

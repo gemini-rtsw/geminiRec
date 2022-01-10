@@ -133,9 +133,6 @@ static char Ofldnames[ARG_MAX][FLDNAME_SZ+1] =
     "VALH", "VALI", "VALJ", "VALK", "VALL", "VALM", "VALN",
     "VALO", "VALP", "VALQ", "VALR", "VALS", "VALT", "VALU" };
 
-/* Sizes of field types */
-static int sizeofTypes[] = {0, 1, 1, 2, 2, 4, 4, 4, 8, 2};
-
 /* This is here so that input link checking can be switched on from the shell */
 int CHECKgensubLINKS = 0;
 

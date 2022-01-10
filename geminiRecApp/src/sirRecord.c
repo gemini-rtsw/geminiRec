@@ -118,7 +118,6 @@ static long init_record( struct dbCommon *pcommon, int pass )
   if (pass == 0)
   {
     psir->vers = VERSION;
-    printf("allocating memory. Record name: %s \n", pcommon->name);
     /* reset array sizes */
     if (psir->nelm <= 0)
        psir->nelm = 1;
