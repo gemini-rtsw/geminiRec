@@ -47,7 +47,12 @@
 #include <iocsh.h>
 #include <errlog.h>
 
+#define MAX_INDEX       52
+
 static int debugLevel = 0;
+static lutoutRecord *globalPlutout[MAX_INDEX];
+static char recordPlutout[MAX_INDEX][40];
+static int mechIndex = 0;
 
 
 /* Create RSET - Record Support Entry Table */
@@ -119,9 +124,12 @@ static long init_record( lutoutRecord *plutout, int pass )
     int i;
     long status;
     struct lutoutdset *pdset;
-
+    
     if (pass == 0)
     {
+        globalPlutout[mechIndex] = plutout; 
+        strcpy(recordPlutout[mechIndex++],plutout->name);
+        // printf("init_record: START: pass:%d plutout: %p name: %s gpl:%p indx=%d nameRec: %s\n",pass,plutout,plutout->name,globalPlutout[mechIndex-1],mechIndex,recordPlutout[mechIndex-1]);
         plutout->vers = VERSION;
 
 	/* read remote data file */
@@ -357,18 +365,39 @@ static long cvt_dbaddr( struct dbAddr *paddr )
 */
 
 static long get_enum_strs (
-    struct dbAddr *paddr,
+    struct dbAddr *paddr, 
     struct dbr_enumStrs *pes)
 {
-    lutoutRecord *plutout = (lutoutRecord *) paddr->precord;
+    lutoutRecord *plutout = (lutoutRecord *) paddr->precord; 
     LUT *p;
+    char message[256];
+    int i;
+
+//    fprintf(stderr,"get_enum_strs: START BEFORE plutout: %p name: %s ltbl: %p\n",plutout,plutout->name,plutout->ltbl);
+    
+    for(i=0; i<MAX_INDEX; i++)
+    {
+	sprintf(message,"%s.VAL",recordPlutout[i]);
+
+        if(strcmp(message,plutout->name) ==0)
+        {
+//	    printf("element found: i= %d %s\n ",i,recordPlutout[i]);
+            break; 
+        }
+
+    }
+     plutout = globalPlutout[i];  
+
+//    fprintf(stderr,"get_enum_strs: START plutout: %p name: %s ltbl: %p \n",plutout,plutout->name,plutout->ltbl);
 
     pes->no_str = 0;
     memset (pes->strs, '\0', sizeof (pes->strs));
     for (p = (LUT *) ellFirst ((ELLLIST *)plutout->ltbl); p != NULL;
 	p = (LUT *) ellNext ((ELLNODE *) p))
     {
-	strncpy (pes->strs[pes->no_str++], p->tag, MAX_STRING_SIZE);
+//        snprintf(message,200,"get_enum_strs: %p tag= %p option: %s",p,p->tag,p->tag);
+// 	fprintf(stderr,"message: %s\n",message); 
+	strncpy (pes->strs[pes->no_str++], p->tag, MAX_STRING_SIZE); 
 	if (pes->no_str >= DB_MAX_CHOICES)
 	    break;
     }
@@ -495,6 +524,8 @@ static long read_file( lutoutRecord *plutout )
     /* read data file from remote disk */
     plutout->ltbl = (void *) malloc (sizeof (ELLLIST));
     ellInit ((ELLLIST *) plutout->ltbl);
+
+//    errlogPrintf("read file: plutout: %p ltbl: %p sz ELLLIST: %ld\n",plutout,plutout->ltbl,sizeof (ELLLIST));
 
     if (!plutout->fdir || !plutout->fdir[0] ||
 	!plutout->fnam || !plutout->fnam[0])
