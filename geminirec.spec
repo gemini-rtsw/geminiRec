@@ -117,4 +117,3 @@ rm -rf $RPM_BUILD_ROOT
 - new package built with tito
 
 
-
