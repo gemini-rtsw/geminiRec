@@ -135,7 +135,7 @@ static void epicsShareAPI callbackRequestCancel(CALLBACK *);
 static char *printDir( int );
 #endif
 
-#define ARG_MAX           8
+#define ARG_MAX           20
 #define DEFAULT_TIMEOUT   3               /* 3 seconds */
 
 

@@ -38,6 +38,7 @@ DBD += lutinRecord.dbd
 DBD += lutoutRecord.dbd
 DBD += statusRecord.dbd
 DBD += geminiRecords.dbd
+DBD += gemrec-tdct.dbd
 DBD += lutFunc.dbd
 
 
@@ -55,6 +56,10 @@ geminiRecords_DBD += lutinRecord.dbd
 geminiRecords_DBD += lutoutRecord.dbd
 geminiRecords_DBD += statusRecord.dbd
 geminiRecords_DBD += gemDevSoft.dbd
+
+# TDCT-only wrapper: aggregates base.dbd + geminiRecords.dbd for schematic editing.
+gemrec-tdct_DBD += base.dbd
+gemrec-tdct_DBD += geminiRecords.dbd
 
 LIBRARY_IOC += geminiRecords
 geminiRecords_SRCS += genSubRecord.c
@@ -80,4 +85,3 @@ INC += lut.h
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-

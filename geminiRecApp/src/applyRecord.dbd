@@ -129,6 +129,78 @@ recordtype(apply) {
 		special(SPC_NOMOD)
 		interest(1)
 	}
+	field(OUTI,DBF_OUTLINK) {
+		prompt("Output Link I")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTJ,DBF_OUTLINK) {
+		prompt("Output Link J")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTK,DBF_OUTLINK) {
+		prompt("Output Link K")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTL,DBF_OUTLINK) {
+		prompt("Output Link L")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTM,DBF_OUTLINK) {
+		prompt("Output Link M")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTN,DBF_OUTLINK) {
+		prompt("Output Link N")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTO,DBF_OUTLINK) {
+		prompt("Output Link O")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTP,DBF_OUTLINK) {
+		prompt("Output Link P")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTQ,DBF_OUTLINK) {
+		prompt("Output Link Q")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTR,DBF_OUTLINK) {
+		prompt("Output Link R")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTS,DBF_OUTLINK) {
+		prompt("Output Link S")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OUTT,DBF_OUTLINK) {
+		prompt("Output Link T")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
 	field(OCLA,DBF_OUTLINK) {
 		prompt("Output CLID Link A")
 		promptgroup(GUI_OUTPUT)
@@ -173,6 +245,78 @@ recordtype(apply) {
 	}
 	field(OCLH,DBF_OUTLINK) {
 		prompt("Output CLID Link H")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLI,DBF_OUTLINK) {
+		prompt("Output CLID Link I")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLJ,DBF_OUTLINK) {
+		prompt("Output CLID Link J")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLK,DBF_OUTLINK) {
+		prompt("Output CLID Link K")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLL,DBF_OUTLINK) {
+		prompt("Output CLID Link L")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLM,DBF_OUTLINK) {
+		prompt("Output CLID Link M")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLN,DBF_OUTLINK) {
+		prompt("Output CLID Link N")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLO,DBF_OUTLINK) {
+		prompt("Output CLID Link O")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLP,DBF_OUTLINK) {
+		prompt("Output CLID Link P")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLQ,DBF_OUTLINK) {
+		prompt("Output CLID Link Q")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLR,DBF_OUTLINK) {
+		prompt("Output CLID Link R")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLS,DBF_OUTLINK) {
+		prompt("Output CLID Link S")
+		promptgroup(GUI_OUTPUT)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(OCLT,DBF_OUTLINK) {
+		prompt("Output CLID Link T")
 		promptgroup(GUI_OUTPUT)
 		special(SPC_NOMOD)
 		interest(1)
@@ -225,6 +369,78 @@ recordtype(apply) {
 		special(SPC_NOMOD)
 		interest(1)
 	}
+	field(INPI,DBF_INLINK) {
+		prompt("Input Link I")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPJ,DBF_INLINK) {
+		prompt("Input Link J")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPK,DBF_INLINK) {
+		prompt("Input Link K")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPL,DBF_INLINK) {
+		prompt("Input Link L")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPM,DBF_INLINK) {
+		prompt("Input Link M")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPN,DBF_INLINK) {
+		prompt("Input Link N")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPO,DBF_INLINK) {
+		prompt("Input Link O")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPP,DBF_INLINK) {
+		prompt("Input Link P")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPQ,DBF_INLINK) {
+		prompt("Input Link Q")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPR,DBF_INLINK) {
+		prompt("Input Link R")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPS,DBF_INLINK) {
+		prompt("Input Link S")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INPT,DBF_INLINK) {
+		prompt("Input Link T")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
 	field(INMA,DBF_INLINK) {
 		prompt("Input Msg Link A")
 		promptgroup(GUI_INPUTS)
@@ -269,6 +485,78 @@ recordtype(apply) {
 	}
 	field(INMH,DBF_INLINK) {
 		prompt("Input Msg Link H")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMI,DBF_INLINK) {
+		prompt("Input Msg Link I")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMJ,DBF_INLINK) {
+		prompt("Input Msg Link J")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMK,DBF_INLINK) {
+		prompt("Input Msg Link K")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INML,DBF_INLINK) {
+		prompt("Input Msg Link L")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMM,DBF_INLINK) {
+		prompt("Input Msg Link M")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMN,DBF_INLINK) {
+		prompt("Input Msg Link N")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMO,DBF_INLINK) {
+		prompt("Input Msg Link O")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMP,DBF_INLINK) {
+		prompt("Input Msg Link P")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMQ,DBF_INLINK) {
+		prompt("Input Msg Link Q")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMR,DBF_INLINK) {
+		prompt("Input Msg Link R")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMS,DBF_INLINK) {
+		prompt("Input Msg Link S")
+		promptgroup(GUI_INPUTS)
+		special(SPC_NOMOD)
+		interest(1)
+	}
+	field(INMT,DBF_INLINK) {
+		prompt("Input Msg Link T")
 		promptgroup(GUI_INPUTS)
 		special(SPC_NOMOD)
 		interest(1)

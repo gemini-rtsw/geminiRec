@@ -1,0 +1,686 @@
+[symbol2]
+bbox -416 -1408 105 288
+port 0 128 100 1024 OUTA symbol 2 32 128 0
+port 0 96 100 1024 OCLA symbol 2 32 96 0
+port 0 64 100 1024 OUTB symbol 2 32 64 0
+port 0 32 100 1024 OCLB symbol 2 32 32 0
+port 0 0 100 1024 OUTC symbol 2 32 0 0
+port 0 -32 100 1024 OCLC symbol 2 32 -32 0
+port 0 -64 100 1024 OUTD symbol 2 32 -64 0
+port 0 -96 100 1024 OCLD symbol 2 32 -96 0
+port 0 -128 100 1024 OUTE symbol 2 32 -128 0
+port 0 -160 100 1024 OCLE symbol 2 32 -160 0
+port 0 -192 100 1024 OUTF symbol 2 32 -192 0
+port 0 -224 100 1024 OCLF symbol 2 32 -224 0
+port 0 -256 100 1024 OUTG symbol 2 32 -256 0
+port 0 -288 100 1024 OCLG symbol 2 32 -288 0
+port 0 -320 100 1024 OUTH symbol 2 32 -320 0
+port 0 -352 100 1024 OCLH symbol 2 32 -352 0
+port 0 -384 100 1024 OUTI symbol 2 32 -384 0
+port 0 -416 100 1024 OCLI symbol 2 32 -416 0
+port 0 -448 100 1024 OUTJ symbol 2 32 -448 0
+port 0 -480 100 1024 OCLJ symbol 2 32 -480 0
+port 0 -512 100 1024 OUTK symbol 2 32 -512 0
+port 0 -544 100 1024 OCLK symbol 2 32 -544 0
+port 0 -576 100 1024 OUTL symbol 2 32 -576 0
+port 0 -608 100 1024 OCLL symbol 2 32 -608 0
+port 0 -640 100 1024 OUTM symbol 2 32 -640 0
+port 0 -672 100 1024 OCLM symbol 2 32 -672 0
+port 0 -704 100 1024 OUTN symbol 2 32 -704 0
+port 0 -736 100 1024 OCLN symbol 2 32 -736 0
+port 0 -768 100 1024 OUTO symbol 2 32 -768 0
+port 0 -800 100 1024 OCLO symbol 2 32 -800 0
+port 0 -832 100 1024 OUTP symbol 2 32 -832 0
+port 0 -864 100 1024 OCLP symbol 2 32 -864 0
+port 0 -896 100 1024 OUTQ symbol 2 32 -896 0
+port 0 -928 100 1024 OCLQ symbol 2 32 -928 0
+port 0 -960 100 1024 OUTR symbol 2 32 -960 0
+port 0 -992 100 1024 OCLR symbol 2 32 -992 0
+port 0 -1024 100 1024 OUTS symbol 2 32 -1024 0
+port 0 -1056 100 1024 OCLS symbol 2 32 -1056 0
+port 0 -1088 100 1024 OUTT symbol 2 32 -1088 0
+port 0 -1120 100 1024 OCLT symbol 2 32 -1120 0
+port -320 128 100 1024 INPA symbol 1 -352 128 0
+port -320 96 100 1024 INMA symbol 1 -352 96 0
+port -320 64 100 1024 INPB symbol 1 -352 64 0
+port -320 32 100 1024 INMB symbol 1 -352 32 0
+port -320 0 100 1024 INPC symbol 1 -352 0 0
+port -320 -32 100 1024 INMC symbol 1 -352 -32 0
+port -320 -64 100 1024 INPD symbol 1 -352 -64 0
+port -320 -96 100 1024 INMD symbol 1 -352 -96 0
+port -320 -128 100 1024 INPE symbol 1 -352 -128 0
+port -320 -160 100 1024 INME symbol 1 -352 -160 0
+port -320 -192 100 1024 INPF symbol 1 -352 -192 0
+port -320 -224 100 1024 INMF symbol 1 -352 -224 0
+port -320 -256 100 1024 INPG symbol 1 -352 -256 0
+port -320 -288 100 1024 INMG symbol 1 -352 -288 0
+port -320 -320 100 1024 INPH symbol 1 -352 -320 0
+port -320 -352 100 1024 INMH symbol 1 -352 -352 0
+port -320 -384 100 1024 INPI symbol 1 -352 -384 0
+port -320 -416 100 1024 INMI symbol 1 -352 -416 0
+port -320 -448 100 1024 INPJ symbol 1 -352 -448 0
+port -320 -480 100 1024 INMJ symbol 1 -352 -480 0
+port -320 -512 100 1024 INPK symbol 1 -352 -512 0
+port -320 -544 100 1024 INMK symbol 1 -352 -544 0
+port -320 -576 100 1024 INPL symbol 1 -352 -576 0
+port -320 -608 100 1024 INML symbol 1 -352 -608 0
+port -320 -640 100 1024 INPM symbol 1 -352 -640 0
+port -320 -672 100 1024 INMM symbol 1 -352 -672 0
+port -320 -704 100 1024 INPN symbol 1 -352 -704 0
+port -320 -736 100 1024 INMN symbol 1 -352 -736 0
+port -320 -768 100 1024 INPO symbol 1 -352 -768 0
+port -320 -800 100 1024 INMO symbol 1 -352 -800 0
+port -320 -832 100 1024 INPP symbol 1 -352 -832 0
+port -320 -864 100 1024 INMP symbol 1 -352 -864 0
+port -320 -896 100 1024 INPQ symbol 1 -352 -896 0
+port -320 -928 100 1024 INMQ symbol 1 -352 -928 0
+port -320 -960 100 1024 INPR symbol 1 -352 -960 0
+port -320 -992 100 1024 INMR symbol 1 -352 -992 0
+port -320 -1024 100 1024 INPS symbol 1 -352 -1024 0
+port -320 -1056 100 1024 INMS symbol 1 -352 -1056 0
+port -320 -1088 100 1024 INPT symbol 1 -352 -1088 0
+port -320 -1120 100 1024 INMT symbol 1 -352 -1120 0
+port -320 256 100 1024 SLNK symbol 1 -352 256 0
+port 0 256 100 1024 FLNK symbol 2 32 256 0
+port 0 224 100 1024 VAL symbol 3 32 224 0
+port 0 192 100 1024 MESS symbol 3 32 192 0
+port -320 224 100 1024 DIR symbol 3 -352 224 0
+port -320 192 100 1024 CLID symbol 3 -352 192 0
+uniq 0
+[tools]
+[attributes]
+p -256 -64 100 0 0 DESC:Gemini Apply Record
+p -256 -96 100 0 0 DISV:1
+p -256 -128 100 0 0 EVNT:0
+p -256 -160 100 0 0 PHAS:0
+p -256 -192 100 0 0 PINI:NO
+p -256 -224 100 0 0 PRIO:LOW
+p -256 -256 100 0 0 SCAN:Passive
+p -256 -288 100 0 0 TOUT:0.0
+p -192 232 100 256 -1 Type:apply
+p -416 -448 100 0 0 def(FLNK):0.0
+p -416 -480 100 0 0 def(INMA):0.0
+p -416 -512 100 0 0 def(INMB):0.0
+p -416 -544 100 0 0 def(INMC):0.0
+p -416 -576 100 0 0 def(INMD):0.0
+p -416 -608 100 0 0 def(INME):0.0
+p -416 -640 100 0 0 def(INMF):0.0
+p -416 -672 100 0 0 def(INMG):0.0
+p -416 -704 100 0 0 def(INMH):0.0
+p -416 -736 100 0 0 def(INMI):0.0
+p -416 -768 100 0 0 def(INMJ):0.0
+p -416 -800 100 0 0 def(INMK):0.0
+p -416 -832 100 0 0 def(INML):0.0
+p -416 -864 100 0 0 def(INMM):0.0
+p -416 -896 100 0 0 def(INMN):0.0
+p -416 -928 100 0 0 def(INMO):0.0
+p -416 -960 100 0 0 def(INMP):0.0
+p -416 -992 100 0 0 def(INMQ):0.0
+p -416 -1024 100 0 0 def(INMR):0.0
+p -416 -1056 100 0 0 def(INMS):0.0
+p -416 -1088 100 0 0 def(INMT):0.0
+p -416 -736 100 0 0 def(INPA):0.0
+p -416 -768 100 0 0 def(INPB):0.0
+p -416 -800 100 0 0 def(INPC):0.0
+p -416 -832 100 0 0 def(INPD):0.0
+p -416 -864 100 0 0 def(INPE):0.0
+p -416 -896 100 0 0 def(INPF):0.0
+p -416 -928 100 0 0 def(INPG):0.0
+p -416 -960 100 0 0 def(INPH):0.0
+p -416 -992 100 0 0 def(INPI):0.0
+p -416 -1024 100 0 0 def(INPJ):0.0
+p -416 -1056 100 0 0 def(INPK):0.0
+p -416 -1088 100 0 0 def(INPL):0.0
+p -416 -1120 100 0 0 def(INPM):0.0
+p -416 -1152 100 0 0 def(INPN):0.0
+p -416 -1184 100 0 0 def(INPO):0.0
+p -416 -1216 100 0 0 def(INPP):0.0
+p -416 -1248 100 0 0 def(INPQ):0.0
+p -416 -1280 100 0 0 def(INPR):0.0
+p -416 -1312 100 0 0 def(INPS):0.0
+p -416 -1344 100 0 0 def(INPT):0.0
+p -256 -480 100 0 0 def(OCLA):0.0
+p -256 -512 100 0 0 def(OCLB):0.0
+p -256 -544 100 0 0 def(OCLC):0.0
+p -256 -576 100 0 0 def(OCLD):0.0
+p -256 -608 100 0 0 def(OCLE):0.0
+p -256 -640 100 0 0 def(OCLF):0.0
+p -256 -672 100 0 0 def(OCLG):0.0
+p -256 -704 100 0 0 def(OCLH):0.0
+p -256 -736 100 0 0 def(OCLI):0.0
+p -256 -768 100 0 0 def(OCLJ):0.0
+p -256 -800 100 0 0 def(OCLK):0.0
+p -256 -832 100 0 0 def(OCLL):0.0
+p -256 -864 100 0 0 def(OCLM):0.0
+p -256 -896 100 0 0 def(OCLN):0.0
+p -256 -928 100 0 0 def(OCLO):0.0
+p -256 -960 100 0 0 def(OCLP):0.0
+p -256 -992 100 0 0 def(OCLQ):0.0
+p -256 -1024 100 0 0 def(OCLR):0.0
+p -256 -1056 100 0 0 def(OCLS):0.0
+p -256 -1088 100 0 0 def(OCLT):0.0
+p -256 -736 100 0 0 def(OUTA):0.0
+p -256 -768 100 0 0 def(OUTB):0.0
+p -256 -800 100 0 0 def(OUTC):0.0
+p -256 -832 100 0 0 def(OUTD):0.0
+p -256 -864 100 0 0 def(OUTE):0.0
+p -256 -896 100 0 0 def(OUTF):0.0
+p -256 -928 100 0 0 def(OUTG):0.0
+p -256 -960 100 0 0 def(OUTH):0.0
+p -256 -992 100 0 0 def(OUTI):0.0
+p -256 -1024 100 0 0 def(OUTJ):0.0
+p -256 -1056 100 0 0 def(OUTK):0.0
+p -256 -1088 100 0 0 def(OUTL):0.0
+p -256 -1120 100 0 0 def(OUTM):0.0
+p -256 -1152 100 0 0 def(OUTN):0.0
+p -256 -1184 100 0 0 def(OUTO):0.0
+p -256 -1216 100 0 0 def(OUTP):0.0
+p -256 -1248 100 0 0 def(OUTQ):0.0
+p -256 -1280 100 0 0 def(OUTR):0.0
+p -256 -1312 100 0 0 def(OUTS):0.0
+p -256 -1344 100 0 0 def(OUTT):0.0
+p -240 -416 100 1024 0 name:$(top)$(I)
+p -352 96 75 1280 -1 palrm(INMA):NMS
+p -352 32 75 1280 -1 palrm(INMB):NMS
+p -352 -32 75 1280 -1 palrm(INMC):NMS
+p -352 -96 75 1280 -1 palrm(INMD):NMS
+p -352 -160 75 1280 -1 palrm(INME):NMS
+p -352 -224 75 1280 -1 palrm(INMF):NMS
+p -352 -288 75 1280 -1 palrm(INMG):NMS
+p -352 -352 75 1280 -1 palrm(INMH):NMS
+p -352 -416 75 1280 -1 palrm(INMI):NMS
+p -352 -480 75 1280 -1 palrm(INMJ):NMS
+p -352 -544 75 1280 -1 palrm(INMK):NMS
+p -352 -608 75 1280 -1 palrm(INML):NMS
+p -352 -672 75 1280 -1 palrm(INMM):NMS
+p -352 -736 75 1280 -1 palrm(INMN):NMS
+p -352 -800 75 1280 -1 palrm(INMO):NMS
+p -352 -864 75 1280 -1 palrm(INMP):NMS
+p -352 -928 75 1280 -1 palrm(INMQ):NMS
+p -352 -992 75 1280 -1 palrm(INMR):NMS
+p -352 -1056 75 1280 -1 palrm(INMS):NMS
+p -352 -1120 75 1280 -1 palrm(INMT):NMS
+p -352 128 75 1280 -1 palrm(INPA):NMS
+p -352 64 75 1280 -1 palrm(INPB):NMS
+p -352 0 75 1280 -1 palrm(INPC):NMS
+p -352 -64 75 1280 -1 palrm(INPD):NMS
+p -352 -128 75 1280 -1 palrm(INPE):NMS
+p -352 -192 75 1280 -1 palrm(INPF):NMS
+p -352 -256 75 1280 -1 palrm(INPG):NMS
+p -352 -320 75 1280 -1 palrm(INPH):NMS
+p -352 -384 75 1280 -1 palrm(INPI):NMS
+p -352 -448 75 1280 -1 palrm(INPJ):NMS
+p -352 -512 75 1280 -1 palrm(INPK):NMS
+p -352 -576 75 1280 -1 palrm(INPL):NMS
+p -352 -640 75 1280 -1 palrm(INPM):NMS
+p -352 -704 75 1280 -1 palrm(INPN):NMS
+p -352 -768 75 1280 -1 palrm(INPO):NMS
+p -352 -832 75 1280 -1 palrm(INPP):NMS
+p -352 -896 75 1280 -1 palrm(INPQ):NMS
+p -352 -960 75 1280 -1 palrm(INPR):NMS
+p -352 -1024 75 1280 -1 palrm(INPS):NMS
+p -352 -1088 75 1280 -1 palrm(INPT):NMS
+p 64 96 75 768 -1 palrm(OCLA):NMS
+p 64 32 75 768 -1 palrm(OCLB):NMS
+p 64 -32 75 768 -1 palrm(OCLC):NMS
+p 64 -96 75 768 -1 palrm(OCLD):NMS
+p 64 -160 75 768 -1 palrm(OCLE):NMS
+p 64 -224 75 768 -1 palrm(OCLF):NMS
+p 64 -288 75 768 -1 palrm(OCLG):NMS
+p 64 -352 75 768 -1 palrm(OCLH):NMS
+p 64 -416 75 768 -1 palrm(OCLI):NMS
+p 64 -480 75 768 -1 palrm(OCLJ):NMS
+p 64 -544 75 768 -1 palrm(OCLK):NMS
+p 64 -608 75 768 -1 palrm(OCLL):NMS
+p 64 -672 75 768 -1 palrm(OCLM):NMS
+p 64 -736 75 768 -1 palrm(OCLN):NMS
+p 64 -800 75 768 -1 palrm(OCLO):NMS
+p 64 -864 75 768 -1 palrm(OCLP):NMS
+p 64 -928 75 768 -1 palrm(OCLQ):NMS
+p 64 -992 75 768 -1 palrm(OCLR):NMS
+p 64 -1056 75 768 -1 palrm(OCLS):NMS
+p 64 -1120 75 768 -1 palrm(OCLT):NMS
+p 64 128 75 768 -1 palrm(OUTA):NMS
+p 64 64 75 768 -1 palrm(OUTB):NMS
+p 64 0 75 768 -1 palrm(OUTC):NMS
+p 64 -64 75 768 -1 palrm(OUTD):NMS
+p 64 -128 75 768 -1 palrm(OUTE):NMS
+p 64 -192 75 768 -1 palrm(OUTF):NMS
+p 64 -256 75 768 -1 palrm(OUTG):NMS
+p 64 -320 75 768 -1 palrm(OUTH):NMS
+p 64 -384 75 768 -1 palrm(OUTI):NMS
+p 64 -448 75 768 -1 palrm(OUTJ):NMS
+p 64 -512 75 768 -1 palrm(OUTK):NMS
+p 64 -576 75 768 -1 palrm(OUTL):NMS
+p 64 -640 75 768 -1 palrm(OUTM):NMS
+p 64 -704 75 768 -1 palrm(OUTN):NMS
+p 64 -768 75 768 -1 palrm(OUTO):NMS
+p 64 -832 75 768 -1 palrm(OUTP):NMS
+p 64 -896 75 768 -1 palrm(OUTQ):NMS
+p 64 -960 75 768 -1 palrm(OUTR):NMS
+p 64 -1024 75 768 -1 palrm(OUTS):NMS
+p 64 -1088 75 768 -1 palrm(OUTT):NMS
+p -384 96 75 1280 -1 pproc(INMA):NPP
+p -384 32 75 1280 -1 pproc(INMB):NPP
+p -384 -32 75 1280 -1 pproc(INMC):NPP
+p -384 -96 75 1280 -1 pproc(INMD):NPP
+p -384 -160 75 1280 -1 pproc(INME):NPP
+p -384 -224 75 1280 -1 pproc(INMF):NPP
+p -384 -288 75 1280 -1 pproc(INMG):NPP
+p -384 -352 75 1280 -1 pproc(INMH):NPP
+p -384 -416 75 1280 -1 pproc(INMI):NPP
+p -384 -480 75 1280 -1 pproc(INMJ):NPP
+p -384 -544 75 1280 -1 pproc(INMK):NPP
+p -384 -608 75 1280 -1 pproc(INML):NPP
+p -384 -672 75 1280 -1 pproc(INMM):NPP
+p -384 -736 75 1280 -1 pproc(INMN):NPP
+p -384 -800 75 1280 -1 pproc(INMO):NPP
+p -384 -864 75 1280 -1 pproc(INMP):NPP
+p -384 -928 75 1280 -1 pproc(INMQ):NPP
+p -384 -992 75 1280 -1 pproc(INMR):NPP
+p -384 -1056 75 1280 -1 pproc(INMS):NPP
+p -384 -1120 75 1280 -1 pproc(INMT):NPP
+p -384 128 75 1280 -1 pproc(INPA):NPP
+p -384 64 75 1280 -1 pproc(INPB):NPP
+p -384 0 75 1280 -1 pproc(INPC):NPP
+p -384 -64 75 1280 -1 pproc(INPD):NPP
+p -384 -128 75 1280 -1 pproc(INPE):NPP
+p -384 -192 75 1280 -1 pproc(INPF):NPP
+p -384 -256 75 1280 -1 pproc(INPG):NPP
+p -384 -320 75 1280 -1 pproc(INPH):NPP
+p -384 -384 75 1280 -1 pproc(INPI):NPP
+p -384 -448 75 1280 -1 pproc(INPJ):NPP
+p -384 -512 75 1280 -1 pproc(INPK):NPP
+p -384 -576 75 1280 -1 pproc(INPL):NPP
+p -384 -640 75 1280 -1 pproc(INPM):NPP
+p -384 -704 75 1280 -1 pproc(INPN):NPP
+p -384 -768 75 1280 -1 pproc(INPO):NPP
+p -384 -832 75 1280 -1 pproc(INPP):NPP
+p -384 -896 75 1280 -1 pproc(INPQ):NPP
+p -384 -960 75 1280 -1 pproc(INPR):NPP
+p -384 -1024 75 1280 -1 pproc(INPS):NPP
+p -384 -1088 75 1280 -1 pproc(INPT):NPP
+p 32 96 75 768 -1 pproc(OCLA):NPP
+p 32 32 75 768 -1 pproc(OCLB):NPP
+p 32 -32 75 768 -1 pproc(OCLC):NPP
+p 32 -96 75 768 -1 pproc(OCLD):NPP
+p 32 -160 75 768 -1 pproc(OCLE):NPP
+p 32 -224 75 768 -1 pproc(OCLF):NPP
+p 32 -288 75 768 -1 pproc(OCLG):NPP
+p 32 -352 75 768 -1 pproc(OCLH):NPP
+p 32 -416 75 768 -1 pproc(OCLI):NPP
+p 32 -480 75 768 -1 pproc(OCLJ):NPP
+p 32 -544 75 768 -1 pproc(OCLK):NPP
+p 32 -608 75 768 -1 pproc(OCLL):NPP
+p 32 -672 75 768 -1 pproc(OCLM):NPP
+p 32 -736 75 768 -1 pproc(OCLN):NPP
+p 32 -800 75 768 -1 pproc(OCLO):NPP
+p 32 -864 75 768 -1 pproc(OCLP):NPP
+p 32 -928 75 768 -1 pproc(OCLQ):NPP
+p 32 -992 75 768 -1 pproc(OCLR):NPP
+p 32 -1056 75 768 -1 pproc(OCLS):NPP
+p 32 -1120 75 768 -1 pproc(OCLT):NPP
+p 32 128 75 768 -1 pproc(OUTA):NPP
+p 32 64 75 768 -1 pproc(OUTB):NPP
+p 32 0 75 768 -1 pproc(OUTC):NPP
+p 32 -64 75 768 -1 pproc(OUTD):NPP
+p 32 -128 75 768 -1 pproc(OUTE):NPP
+p 32 -192 75 768 -1 pproc(OUTF):NPP
+p 32 -256 75 768 -1 pproc(OUTG):NPP
+p 32 -320 75 768 -1 pproc(OUTH):NPP
+p 32 -384 75 768 -1 pproc(OUTI):NPP
+p 32 -448 75 768 -1 pproc(OUTJ):NPP
+p 32 -512 75 768 -1 pproc(OUTK):NPP
+p 32 -576 75 768 -1 pproc(OUTL):NPP
+p 32 -640 75 768 -1 pproc(OUTM):NPP
+p 32 -704 75 768 -1 pproc(OUTN):NPP
+p 32 -768 75 768 -1 pproc(OUTO):NPP
+p 32 -832 75 768 -1 pproc(OUTP):NPP
+p 32 -896 75 768 -1 pproc(OUTQ):NPP
+p 32 -960 75 768 -1 pproc(OUTR):NPP
+p 32 -1024 75 768 -1 pproc(OUTS):NPP
+p 32 -1088 75 768 -1 pproc(OUTT):NPP
+p -256 -288 100 0 0 primitive:apply
+p -96 -448 100 0 0 typ(FLNK):path
+p -96 -480 100 0 0 typ(INMA):path
+p -96 -512 100 0 0 typ(INMB):path
+p -96 -544 100 0 0 typ(INMC):path
+p -96 -576 100 0 0 typ(INMD):path
+p -96 -608 100 0 0 typ(INME):path
+p -96 -640 100 0 0 typ(INMF):path
+p -96 -672 100 0 0 typ(INMG):path
+p -96 -704 100 0 0 typ(INMH):path
+p -96 -736 100 0 0 typ(INMI):path
+p -96 -768 100 0 0 typ(INMJ):path
+p -96 -800 100 0 0 typ(INMK):path
+p -96 -832 100 0 0 typ(INML):path
+p -96 -864 100 0 0 typ(INMM):path
+p -96 -896 100 0 0 typ(INMN):path
+p -96 -928 100 0 0 typ(INMO):path
+p -96 -960 100 0 0 typ(INMP):path
+p -96 -992 100 0 0 typ(INMQ):path
+p -96 -1024 100 0 0 typ(INMR):path
+p -96 -1056 100 0 0 typ(INMS):path
+p -96 -1088 100 0 0 typ(INMT):path
+p -96 -736 100 0 0 typ(INPA):path
+p -96 -768 100 0 0 typ(INPB):path
+p -96 -800 100 0 0 typ(INPC):path
+p -96 -832 100 0 0 typ(INPD):path
+p -96 -864 100 0 0 typ(INPE):path
+p -96 -896 100 0 0 typ(INPF):path
+p -96 -928 100 0 0 typ(INPG):path
+p -96 -960 100 0 0 typ(INPH):path
+p -96 -992 100 0 0 typ(INPI):path
+p -96 -1024 100 0 0 typ(INPJ):path
+p -96 -1056 100 0 0 typ(INPK):path
+p -96 -1088 100 0 0 typ(INPL):path
+p -96 -1120 100 0 0 typ(INPM):path
+p -96 -1152 100 0 0 typ(INPN):path
+p -96 -1184 100 0 0 typ(INPO):path
+p -96 -1216 100 0 0 typ(INPP):path
+p -96 -1248 100 0 0 typ(INPQ):path
+p -96 -1280 100 0 0 typ(INPR):path
+p -96 -1312 100 0 0 typ(INPS):path
+p -96 -1344 100 0 0 typ(INPT):path
+p 64 -480 100 0 0 typ(OCLA):path
+p 64 -512 100 0 0 typ(OCLB):path
+p 64 -544 100 0 0 typ(OCLC):path
+p 64 -576 100 0 0 typ(OCLD):path
+p 64 -608 100 0 0 typ(OCLE):path
+p 64 -640 100 0 0 typ(OCLF):path
+p 64 -672 100 0 0 typ(OCLG):path
+p 64 -704 100 0 0 typ(OCLH):path
+p 64 -736 100 0 0 typ(OCLI):path
+p 64 -768 100 0 0 typ(OCLJ):path
+p 64 -800 100 0 0 typ(OCLK):path
+p 64 -832 100 0 0 typ(OCLL):path
+p 64 -864 100 0 0 typ(OCLM):path
+p 64 -896 100 0 0 typ(OCLN):path
+p 64 -928 100 0 0 typ(OCLO):path
+p 64 -960 100 0 0 typ(OCLP):path
+p 64 -992 100 0 0 typ(OCLQ):path
+p 64 -1024 100 0 0 typ(OCLR):path
+p 64 -1056 100 0 0 typ(OCLS):path
+p 64 -1088 100 0 0 typ(OCLT):path
+p 64 -736 100 0 0 typ(OUTA):path
+p 64 -768 100 0 0 typ(OUTB):path
+p 64 -800 100 0 0 typ(OUTC):path
+p 64 -832 100 0 0 typ(OUTD):path
+p 64 -864 100 0 0 typ(OUTE):path
+p 64 -896 100 0 0 typ(OUTF):path
+p 64 -928 100 0 0 typ(OUTG):path
+p 64 -960 100 0 0 typ(OUTH):path
+p 64 -992 100 0 0 typ(OUTI):path
+p 64 -1024 100 0 0 typ(OUTJ):path
+p 64 -1056 100 0 0 typ(OUTK):path
+p 64 -1088 100 0 0 typ(OUTL):path
+p 64 -1120 100 0 0 typ(OUTM):path
+p 64 -1152 100 0 0 typ(OUTN):path
+p 64 -1184 100 0 0 typ(OUTO):path
+p 64 -1216 100 0 0 typ(OUTP):path
+p 64 -1248 100 0 0 typ(OUTQ):path
+p 64 -1280 100 0 0 typ(OUTR):path
+p 64 -1312 100 0 0 typ(OUTS):path
+p 64 -1344 100 0 0 typ(OUTT):path
+[layers]
+<symbol>
+r 0 -288 -1152 -32 288
+v 0 -352 256
+-288 256
+_
+v 0 -352 224
+-288 224
+_
+v 0 -352 192
+-288 192
+_
+v 0 -352 128
+-288 128
+_
+v 0 -352 96
+-288 96
+_
+v 0 -352 64
+-288 64
+_
+v 0 -352 32
+-288 32
+_
+v 0 -352 0
+-288 0
+_
+v 0 -352 -32
+-288 -32
+_
+v 0 -352 -64
+-288 -64
+_
+v 0 -352 -96
+-288 -96
+_
+v 0 -352 -128
+-288 -128
+_
+v 0 -352 -160
+-288 -160
+_
+v 0 -352 -192
+-288 -192
+_
+v 0 -352 -224
+-288 -224
+_
+v 0 -352 -256
+-288 -256
+_
+v 0 -352 -288
+-288 -288
+_
+v 0 -352 -320
+-288 -320
+_
+v 0 -352 -352
+-288 -352
+_
+v 0 -352 -384
+-288 -384
+_
+v 0 -352 -416
+-288 -416
+_
+v 0 -352 -448
+-288 -448
+_
+v 0 -352 -480
+-288 -480
+_
+v 0 -352 -512
+-288 -512
+_
+v 0 -352 -544
+-288 -544
+_
+v 0 -352 -576
+-288 -576
+_
+v 0 -352 -608
+-288 -608
+_
+v 0 -352 -640
+-288 -640
+_
+v 0 -352 -672
+-288 -672
+_
+v 0 -352 -704
+-288 -704
+_
+v 0 -352 -736
+-288 -736
+_
+v 0 -352 -768
+-288 -768
+_
+v 0 -352 -800
+-288 -800
+_
+v 0 -352 -832
+-288 -832
+_
+v 0 -352 -864
+-288 -864
+_
+v 0 -352 -896
+-288 -896
+_
+v 0 -352 -928
+-288 -928
+_
+v 0 -352 -960
+-288 -960
+_
+v 0 -352 -992
+-288 -992
+_
+v 0 -352 -1024
+-288 -1024
+_
+v 0 -352 -1056
+-288 -1056
+_
+v 0 -352 -1088
+-288 -1088
+_
+v 0 -352 -1120
+-288 -1120
+_
+v 0 -32 256
+32 256
+_
+v 0 -32 224
+32 224
+_
+v 0 -32 192
+32 192
+_
+v 0 -32 128
+32 128
+_
+v 0 -32 96
+32 96
+_
+v 0 -32 64
+32 64
+_
+v 0 -32 32
+32 32
+_
+v 0 -32 0
+32 0
+_
+v 0 -32 -32
+32 -32
+_
+v 0 -32 -64
+32 -64
+_
+v 0 -32 -96
+32 -96
+_
+v 0 -32 -128
+32 -128
+_
+v 0 -32 -160
+32 -160
+_
+v 0 -32 -192
+32 -192
+_
+v 0 -32 -224
+32 -224
+_
+v 0 -32 -256
+32 -256
+_
+v 0 -32 -288
+32 -288
+_
+v 0 -32 -320
+32 -320
+_
+v 0 -32 -352
+32 -352
+_
+v 0 -32 -384
+32 -384
+_
+v 0 -32 -416
+32 -416
+_
+v 0 -32 -448
+32 -448
+_
+v 0 -32 -480
+32 -480
+_
+v 0 -32 -512
+32 -512
+_
+v 0 -32 -544
+32 -544
+_
+v 0 -32 -576
+32 -576
+_
+v 0 -32 -608
+32 -608
+_
+v 0 -32 -640
+32 -640
+_
+v 0 -32 -672
+32 -672
+_
+v 0 -32 -704
+32 -704
+_
+v 0 -32 -736
+32 -736
+_
+v 0 -32 -768
+32 -768
+_
+v 0 -32 -800
+32 -800
+_
+v 0 -32 -832
+32 -832
+_
+v 0 -32 -864
+32 -864
+_
+v 0 -32 -896
+32 -896
+_
+v 0 -32 -928
+32 -928
+_
+v 0 -32 -960
+32 -960
+_
+v 0 -32 -992
+32 -992
+_
+v 0 -32 -1024
+32 -1024
+_
+v 0 -32 -1056
+32 -1056
+_
+v 0 -32 -1088
+32 -1088
+_
+v 0 -32 -1120
+32 -1120
+_
+[comments]

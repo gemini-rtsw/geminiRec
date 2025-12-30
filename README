@@ -34,6 +34,9 @@ The geminiRec/geminRecApp/Db  directory contains:
                  (3) If using TDCT, insert the lines in capfast/gem-tdct-cfg 
                      into your tdct.cfg file just before the [endcfg] directive.
                      - tdct.cfg is probably located at ~/.tdct/tdct.cfg
+                 (4) TDCT requires an aggregated DBD (base + Gemini). The build
+                     generates and installs gemrec-tdct.dbd into <top>/dbd for this
+                     purpose; point your tdct.cfg [dbdfile] at that name.
 
 ===========================================================================
 Mike Westfall
