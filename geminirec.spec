@@ -18,8 +18,8 @@
 
 Summary: %{name} Package, a module for EPICS base
 Name: %{name}
-Version: 4.1.13
-Release: 0%{?dist}
+Version: 4.1.14
+Release: 0.1.rc1
 License: EPICS Open License
 Group: Applications/Engineering
 Source0: %{name}-%{version}.tar.gz
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
    /%{_prefix}/%{name}/configure
 
 %changelog
+* Sat Apr 25 2026 Matt Rippa <matt.rippa@noirlab.edu> 4.1.14-0.1.rc1
+- RTEMS-858: Start geminiRec 4.1.14 branch baseline
+
 * Tue Dec 30 2025 Matt Rippa <matt.rippa@noirlab.edu> 4.1.13-4
 - SYSCO-745: Add TDCT eapply20 support
 - rebuilding rpm using gem-ci master branch
