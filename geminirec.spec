@@ -19,7 +19,7 @@
 Summary: %{name} Package, a module for EPICS base
 Name: %{name}
 Version: 4.1.13
-Release: 4%{?dist}
+Release: 0%{?dist}
 License: EPICS Open License
 Group: Applications/Engineering
 Source0: %{name}-%{version}.tar.gz
@@ -160,4 +160,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Wed Jul 22 2020 fkraemer <fkraemer@gemini.edu> 3.15.8-4.1.13.2020072286a4352
 - new package built with tito
-
